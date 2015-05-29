@@ -24,6 +24,7 @@ namespace Youtuble_downloader
         private void Form1_Load(object sender, EventArgs e)
         {
             radYTtitle.Checked = true;
+            //linkgit.Links.Add(6,4,"http://www.github.com/rnand/");
             if (Clipboard.ContainsText())
             {
                 Regex isUrl = new Regex("^https?://"); //if it begins with http:// or https://
@@ -343,6 +344,11 @@ namespace Youtuble_downloader
         public void validate(String url)
         {
 
+        }
+
+        private void linkgit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.github.com/rnand/");
         }
     }
    

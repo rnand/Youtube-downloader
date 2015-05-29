@@ -57,6 +57,7 @@
             this.txtPLstart = new System.Windows.Forms.TextBox();
             this.lblPLend = new System.Windows.Forms.Label();
             this.txtPLend = new System.Windows.Forms.TextBox();
+            this.linkgit = new System.Windows.Forms.LinkLabel();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -358,11 +359,23 @@
             this.txtPLend.Size = new System.Drawing.Size(40, 20);
             this.txtPLend.TabIndex = 22;
             // 
+            // linkgit
+            // 
+            this.linkgit.AutoSize = true;
+            this.linkgit.Location = new System.Drawing.Point(639, 458);
+            this.linkgit.Name = "linkgit";
+            this.linkgit.Size = new System.Drawing.Size(91, 13);
+            this.linkgit.TabIndex = 23;
+            this.linkgit.TabStop = true;
+            this.linkgit.Text = "github.com/rnand";
+            this.linkgit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkgit_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 472);
+            this.Controls.Add(this.linkgit);
             this.Controls.Add(this.txtPLend);
             this.Controls.Add(this.lblPLend);
             this.Controls.Add(this.txtPLstart);
@@ -382,7 +395,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "YouTube Downloader 1.3.2";
+            this.Text = "YouTube Downloader 1.3.5";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();
@@ -425,6 +438,7 @@
         private System.Windows.Forms.TextBox txtPLstart;
         private System.Windows.Forms.Label lblPLend;
         private System.Windows.Forms.TextBox txtPLend;
+        private System.Windows.Forms.LinkLabel linkgit;
     }
 }
 

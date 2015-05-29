@@ -1,7 +1,4 @@
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Debug\ResolveAssemblyReference.cache
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Debug\Youtuble_downloader.Form1.resources
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Debug\GenerateResource.read.1.tlog
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Debug\GenerateResource.write.1.tlog
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Debug\Youtube downloader.exe.manifest
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Debug\Youtube downloader.application
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Debug\Youtube downloader.exe
@@ -14,3 +11,4 @@ h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloa
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Debug\Youtube downloader.pdb
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Debug\youtube-dl.exe
 H:\My Documents\Visual Studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Debug\YouTube downloader.exe.config
+h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Debug\Youtuble downloader.csproj.GenerateResource.Cache
