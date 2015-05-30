@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("YouTube downloader")]
 [assembly: AssemblyDescription("An application to download YouTube videos")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("bored_programmer Inc.")]
+[assembly: AssemblyCompany("unemployed incorporated!")]
 [assembly: AssemblyProduct("Youtube downloader")]
 [assembly: AssemblyCopyright("No Copyright !© Rahul Anand 2014")]
 [assembly: AssemblyTrademark("")]
