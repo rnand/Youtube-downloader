@@ -6,4 +6,8 @@ This software is the result of my realization that most people (including me) ar
 But the problem is youtube-dl is written in Python and I suck at it. Especially when it comes to building GUIs in Python. So I decided to use C# and WinForms. But I don't know how to execute Python scripts inside C# (I'm in the process of learning IronPython, which I hope will help me acheive this). So what I ended up doing was, compile the Python scripts to a binary executable, embedd that inside my C# program, and call it with arguments that the user enters through the GUI. This is an extreamely shady and sloppy and crappy way to do it, but it works!
 
 
-To download the executable, go to 'downloads' section under releases : https://github.com/rnand/Youtuble-downloader/releases
+**To download the executable**, go to **downloads** section under releases : https://github.com/rnand/Youtuble-downloader/releases
+
+You need .net framework 4 to run the application.
+
+You probably also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.org/download.html
