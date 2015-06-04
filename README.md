@@ -13,7 +13,11 @@ You need .net framework 4 to run the application.
 You probably also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.org/download.html
 
 **USAGE**
+
 1. Copy youtube video url to clipboard
+
 2. Open YouTube DOwnloader.exe
+
 3. Select the necessary options
+
 4. Click ***Download***
