@@ -20,4 +20,4 @@ You probably also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.o
 
 3. Select the necessary options
 
-4. Click ***Download***
+4. Click *Download*
