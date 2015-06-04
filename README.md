@@ -16,7 +16,7 @@ You probably also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.o
 
 1. Copy youtube video url to clipboard
 
-2. Open YouTube DOwnloader.exe
+2. Open YouTube Downloader.exe
 
 3. Select the necessary options
 
