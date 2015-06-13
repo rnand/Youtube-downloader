@@ -1,5 +1,6 @@
 This is a GUI version of youtube-dl found here:https://rg3.github.io/youtube-dl/
 
+![Screenshot](https://cloud.githubusercontent.com/assets/12506856/7896184/8a08bb8c-06ce-11e5-9e84-8e1fc3f496b0.png)
 
 This software is the result of my realization that most people (including me) are too stupid or just lazy to use the command-line tool 'youtube-dl'. So I decided to build a GUI for it with only the most bare-bone features (youtube-dl has a ton of features which are not available in my version).
 
