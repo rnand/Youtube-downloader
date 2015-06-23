@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Youtuble downloader", "Youtuble downloader\Youtuble downloader.csproj", "{6F355218-8646-4F49-A94A-117A9E245D52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Youtube downloader", "Youtube downloader\Youtube downloader.csproj", "{6F355218-8646-4F49-A94A-117A9E245D52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
