@@ -394,7 +394,7 @@
             this.btnHideSt.Name = "btnHideSt";
             this.btnHideSt.Size = new System.Drawing.Size(106, 22);
             this.btnHideSt.TabIndex = 25;
-            this.btnHideSt.Text = "Show/Hide Status";
+            this.btnHideSt.Text = "Hide Status";
             this.toolTip1.SetToolTip(this.btnHideSt, "Display the status of download.");
             this.btnHideSt.UseVisualStyleBackColor = true;
             this.btnHideSt.Visible = false;

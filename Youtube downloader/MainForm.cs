@@ -20,7 +20,8 @@ namespace Youtube_downloader
         {
             InitializeComponent();
         }
-        public string output;
+        private string output;
+        private Process exeProcess = new Process();
         private void Form1_Load(object sender, EventArgs e)
         {
             radYTtitle.Checked = true;
@@ -139,12 +140,12 @@ namespace Youtube_downloader
                     //Audio Vorbis @ 128 kbits/s
                 }
 
-                Process exeProcess = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
+                
+                //ProcessStartInfo startInfo = new ProcessStartInfo();
                 exeProcess.StartInfo.RedirectStandardOutput = true;
                 exeProcess.StartInfo.CreateNoWindow = true;
                 exeProcess.StartInfo.UseShellExecute = false;
-
+                exeProcess.EnableRaisingEvents = true;
                 exeProcess.StartInfo.FileName = ex1;
                 //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 if (txtPLstart.Text=="" && txtPLend.Text=="")
@@ -159,7 +160,10 @@ namespace Youtube_downloader
                 }
 
                 exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
-                exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from hidden console
+                exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from console
+
+                exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler);
+
                 try
                 {
                     
@@ -174,19 +178,19 @@ namespace Youtube_downloader
                     {
                         Application.DoEvents(); // This keeps the form responsive by processing events
                     }
-                    if (exeProcess.ExitCode == 0)
-                    {
-                        MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    //if (exeProcess.ExitCode == 0)
+                    //{
+                    //    MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //}
                     
                 }
                 catch
                 {
-                    // Log error.
+                    //MessageBox.Show("ERROR");
                 }
             }
             else
@@ -277,43 +281,71 @@ namespace Youtube_downloader
                         //Audio Vorbis @ 128 kbits/s
                     }
 
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                    startInfo.CreateNoWindow = false;
-                    startInfo.UseShellExecute = false;
-                    startInfo.FileName = ex1;
+                    
+                    //ProcessStartInfo startInfo = new ProcessStartInfo();
+                    exeProcess.StartInfo.RedirectStandardOutput = true;
+                    exeProcess.StartInfo.CreateNoWindow = true;
+                    exeProcess.StartInfo.UseShellExecute = false;
+                    exeProcess.EnableRaisingEvents = true;
+                    exeProcess.StartInfo.FileName = ex1;
                     //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     if (radYTtitle.Checked)
                     {
-                        startInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + yURL + " -f " + qlty;
+                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + yURL + " -f " + qlty;
                     }
                     else
                     {
-                        startInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + yURL + " -f " + qlty;//ftype; +" ";
+                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + yURL + " -f " + qlty;//ftype; +" ";
                     }
 
+                    exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
+                    exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from console
+
+                    exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler);
                     try
                     {
+
                         // Start the process with the info we specified.
-                        // Call WaitForExit and then the using statement will close.
-                        using (Process exeProcess = Process.Start(startInfo))
+                        exeProcess.Start();
+                        exeProcess.BeginOutputReadLine();
+                        exeProcess.BeginErrorReadLine();
+                        //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
+                        while (!exeProcess.HasExited) // Instead do this.
                         {
-                        
-                            exeProcess.WaitForExit();
-                            if (exeProcess.ExitCode == 0)
-                            {
-                                MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            }
+                            Application.DoEvents(); // This keeps the form responsive by processing events
                         }
+                        //if (exeProcess.HasExited)
+                        //{
+                        //    if (exeProcess.ExitCode == 0)
+                        //    {
+                        //        MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //    }
+                        //    else
+                        //    {
+                        //        MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //    }
+                        //}
+                        
+
                     }
                     catch
                     {
-                        // Log error.
+                        //MessageBox.Show("ERROR");
                     }
                 }
+            }
+        }
+
+        void exeProcess_ExitedHandler(object sender, EventArgs e)
+        {
+            
+            if (exeProcess.ExitCode == 0)
+            {
+                MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e)
@@ -394,10 +426,12 @@ namespace Youtube_downloader
             if (txtStatus.Visible == false)
             {
                 txtStatus.Visible = true;
+                btnHideSt.Text = "Hide Status";
             }
             else
             {
                 txtStatus.Visible = false;
+                btnHideSt.Text = "Show Status";
             }
             if (this.Height == 470)
             {
