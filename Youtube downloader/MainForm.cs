@@ -65,15 +65,13 @@ namespace Youtube_downloader
             else if (chkPlaylst.Checked == true)
             {
                 this.Height = 530; //resize the form
-                if (txtStatus.Visible == false)  //show the text box
-                {
-                    txtStatus.Visible = true;
+                //show the text box
+                txtStatus.Visible = true;
 
-                }
-                else
-                {
-                    txtStatus.Visible = false;
-                }
+                //show the 'hide status' button
+                btnHideSt.Visible = true;
+                
+                
                 //MessageBox.Show("Tjorf frseter cionmf spgen (jeiotlfust). This feature coming soon (playlist)");
                 string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                 File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);

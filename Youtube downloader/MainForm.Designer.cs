@@ -59,7 +59,7 @@
             this.txtPLend = new System.Windows.Forms.TextBox();
             this.linkgit = new System.Windows.Forms.LinkLabel();
             this.txtStatus = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnHideSt = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -381,22 +381,22 @@
             this.txtStatus.TabIndex = 24;
             this.txtStatus.Visible = false;
             // 
-            // button1
+            // btnHideSt
             // 
-            this.button1.Location = new System.Drawing.Point(632, 421);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 22);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Hide Status";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
+            this.btnHideSt.Location = new System.Drawing.Point(632, 421);
+            this.btnHideSt.Name = "btnHideSt";
+            this.btnHideSt.Size = new System.Drawing.Size(84, 22);
+            this.btnHideSt.TabIndex = 25;
+            this.btnHideSt.Text = "Hide Status";
+            this.btnHideSt.UseVisualStyleBackColor = true;
+            this.btnHideSt.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 472);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnHideSt);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.linkgit);
             this.Controls.Add(this.txtPLend);
@@ -463,7 +463,7 @@
         private System.Windows.Forms.TextBox txtPLend;
         private System.Windows.Forms.LinkLabel linkgit;
         private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHideSt;
     }
 }
 
