@@ -58,6 +58,8 @@
             this.lblPLend = new System.Windows.Forms.Label();
             this.txtPLend = new System.Windows.Forms.TextBox();
             this.linkgit = new System.Windows.Forms.LinkLabel();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -119,7 +121,7 @@
             this.groupBoxQlty.Controls.Add(this.rdbsd480);
             this.groupBoxQlty.Controls.Add(this.rdbhd720);
             this.groupBoxQlty.Controls.Add(this.rdbhd1080);
-            this.groupBoxQlty.Location = new System.Drawing.Point(114, 281);
+            this.groupBoxQlty.Location = new System.Drawing.Point(124, 264);
             this.groupBoxQlty.Name = "groupBoxQlty";
             this.groupBoxQlty.Size = new System.Drawing.Size(225, 137);
             this.groupBoxQlty.TabIndex = 8;
@@ -206,7 +208,7 @@
             // 
             this.groupBoxFtype.Controls.Add(this.rdbwebm);
             this.groupBoxFtype.Controls.Add(this.rdbmp4);
-            this.groupBoxFtype.Location = new System.Drawing.Point(382, 281);
+            this.groupBoxFtype.Location = new System.Drawing.Point(392, 264);
             this.groupBoxFtype.Name = "groupBoxFtype";
             this.groupBoxFtype.Size = new System.Drawing.Size(213, 137);
             this.groupBoxFtype.TabIndex = 15;
@@ -245,7 +247,7 @@
             // 
             // btndwnld
             // 
-            this.btndwnld.Location = new System.Drawing.Point(317, 435);
+            this.btndwnld.Location = new System.Drawing.Point(327, 408);
             this.btndwnld.Name = "btndwnld";
             this.btndwnld.Size = new System.Drawing.Size(95, 29);
             this.btndwnld.TabIndex = 17;
@@ -304,7 +306,7 @@
             // chkDefLoc
             // 
             this.chkDefLoc.AutoSize = true;
-            this.chkDefLoc.Location = new System.Drawing.Point(149, 124);
+            this.chkDefLoc.Location = new System.Drawing.Point(143, 124);
             this.chkDefLoc.Name = "chkDefLoc";
             this.chkDefLoc.Size = new System.Drawing.Size(131, 17);
             this.chkDefLoc.TabIndex = 4;
@@ -362,7 +364,7 @@
             // linkgit
             // 
             this.linkgit.AutoSize = true;
-            this.linkgit.Location = new System.Drawing.Point(639, 458);
+            this.linkgit.Location = new System.Drawing.Point(636, 9);
             this.linkgit.Name = "linkgit";
             this.linkgit.Size = new System.Drawing.Size(91, 13);
             this.linkgit.TabIndex = 23;
@@ -370,11 +372,32 @@
             this.linkgit.Text = "github.com/rnand";
             this.linkgit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkgit_LinkClicked);
             // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(12, 443);
+            this.txtStatus.Multiline = true;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(705, 56);
+            this.txtStatus.TabIndex = 24;
+            this.txtStatus.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(632, 421);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 22);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Hide Status";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 472);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.linkgit);
             this.Controls.Add(this.txtPLend);
             this.Controls.Add(this.lblPLend);
@@ -439,6 +462,8 @@
         private System.Windows.Forms.Label lblPLend;
         private System.Windows.Forms.TextBox txtPLend;
         private System.Windows.Forms.LinkLabel linkgit;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -57,12 +57,23 @@ namespace Youtube_downloader
 
         private void btndwnld_Click(object sender, EventArgs e)
         {
+            
             if (txtURL.Text == "" ||  txtdir.Text == "")
             {
                 MessageBox.Show("Enter the required values.", "Values needed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (chkPlaylst.Checked == true)
             {
+                this.Height = 530; //resize the form
+                if (txtStatus.Visible == false)  //show the text box
+                {
+                    txtStatus.Visible = true;
+
+                }
+                else
+                {
+                    txtStatus.Visible = false;
+                }
                 //MessageBox.Show("Tjorf frseter cionmf spgen (jeiotlfust). This feature coming soon (playlist)");
                 string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                 File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
@@ -171,6 +182,7 @@ namespace Youtube_downloader
             }
             else
             {
+                
                 Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
                 string vURL = txtURL.Text;
                 string vID;//stores video ID
@@ -181,6 +193,16 @@ namespace Youtube_downloader
                 }
                 else
                 {
+                    this.Height = 530;
+                    if (txtStatus.Visible == false)
+                    {
+                        txtStatus.Visible = true;
+
+                    }
+                    else
+                    {
+                        txtStatus.Visible = false;
+                    }
                     vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
                     //MessageBox.Show(vID);
                     string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
