@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblURL = new System.Windows.Forms.Label();
             this.txtURL = new System.Windows.Forms.TextBox();
@@ -60,6 +61,8 @@
             this.linkgit = new System.Windows.Forms.LinkLabel();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnHideSt = new System.Windows.Forms.Button();
+            this.btnRld = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -79,7 +82,7 @@
             // 
             this.txtURL.Location = new System.Drawing.Point(143, 34);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(564, 20);
+            this.txtURL.Size = new System.Drawing.Size(529, 20);
             this.txtURL.TabIndex = 1;
             // 
             // lblSave
@@ -109,6 +112,7 @@
             this.btnbrowse.TabIndex = 3;
             this.btnbrowse.Text = "...";
             this.btnbrowse.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.btnbrowse, "Browse for a folder");
             this.btnbrowse.UseVisualStyleBackColor = true;
             this.btnbrowse.Click += new System.EventHandler(this.btnbrowse_Click);
             // 
@@ -252,6 +256,7 @@
             this.btndwnld.Size = new System.Drawing.Size(95, 29);
             this.btndwnld.TabIndex = 17;
             this.btndwnld.Text = "Download";
+            this.toolTip1.SetToolTip(this.btndwnld, "Click to download the video.");
             this.btndwnld.UseVisualStyleBackColor = true;
             this.btndwnld.Click += new System.EventHandler(this.btndwnld_Click);
             // 
@@ -322,6 +327,7 @@
             this.chkPlaylst.Size = new System.Drawing.Size(116, 17);
             this.chkPlaylst.TabIndex = 18;
             this.chkPlaylst.Text = "URL is for a playlist";
+            this.toolTip1.SetToolTip(this.chkPlaylst, "Check if the URL you have entered is for a playlist.");
             this.chkPlaylst.UseVisualStyleBackColor = true;
             this.chkPlaylst.CheckedChanged += new System.EventHandler(this.chkPlaylst_CheckedChanged);
             // 
@@ -364,12 +370,13 @@
             // linkgit
             // 
             this.linkgit.AutoSize = true;
-            this.linkgit.Location = new System.Drawing.Point(636, 9);
+            this.linkgit.Location = new System.Drawing.Point(636, 4);
             this.linkgit.Name = "linkgit";
             this.linkgit.Size = new System.Drawing.Size(91, 13);
             this.linkgit.TabIndex = 23;
             this.linkgit.TabStop = true;
             this.linkgit.Text = "github.com/rnand";
+            this.toolTip1.SetToolTip(this.linkgit, "Go to the GitHub page of the developer.");
             this.linkgit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkgit_LinkClicked);
             // 
             // txtStatus
@@ -388,15 +395,30 @@
             this.btnHideSt.Size = new System.Drawing.Size(106, 22);
             this.btnHideSt.TabIndex = 25;
             this.btnHideSt.Text = "Show/Hide Status";
+            this.toolTip1.SetToolTip(this.btnHideSt, "Display the status of download.");
             this.btnHideSt.UseVisualStyleBackColor = true;
             this.btnHideSt.Visible = false;
             this.btnHideSt.Click += new System.EventHandler(this.btnHideSt_Click);
+            // 
+            // btnRld
+            // 
+            this.btnRld.BackgroundImage = global::YouTube_downloader.Properties.Resources.reload_icon_hi;
+            this.btnRld.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRld.Location = new System.Drawing.Point(678, 25);
+            this.btnRld.Name = "btnRld";
+            this.btnRld.Size = new System.Drawing.Size(31, 29);
+            this.btnRld.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.btnRld, "Reload URL from clipboard.");
+            this.btnRld.UseVisualStyleBackColor = true;
+            this.btnRld.Click += new System.EventHandler(this.btnRld_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 442);
+            this.Controls.Add(this.btnRld);
             this.Controls.Add(this.btnHideSt);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.linkgit);
@@ -465,6 +487,8 @@
         private System.Windows.Forms.LinkLabel linkgit;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Button btnHideSt;
+        private System.Windows.Forms.Button btnRld;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

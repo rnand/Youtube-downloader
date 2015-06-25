@@ -20,14 +20,14 @@ namespace Youtube_downloader
         {
             InitializeComponent();
         }
-
+        public string output;
         private void Form1_Load(object sender, EventArgs e)
         {
             radYTtitle.Checked = true;
             //linkgit.Links.Add(6,4,"http://www.github.com/rnand/");
             if (Clipboard.ContainsText())
             {
-                Regex isUrl = new Regex("^https?://"); //if it begins with http:// or https://
+                Regex isUrl = new Regex("^https?://|^www"); //if it begins with http:// or https:// or www
                 Match URLtest = isUrl.Match(Clipboard.GetText());
                 if (URLtest.Success) //copy content from clipboard only if it begins with http:// or https://
                 {
@@ -139,39 +139,50 @@ namespace Youtube_downloader
                     //Audio Vorbis @ 128 kbits/s
                 }
 
+                Process exeProcess = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.CreateNoWindow = false;
-                startInfo.UseShellExecute = false;
-                startInfo.FileName = ex1;
+                exeProcess.StartInfo.RedirectStandardOutput = true;
+                exeProcess.StartInfo.CreateNoWindow = true;
+                exeProcess.StartInfo.UseShellExecute = false;
+
+                exeProcess.StartInfo.FileName = ex1;
                 //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 if (txtPLstart.Text=="" && txtPLend.Text=="")
                 {
-                    startInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + PLurl + " -f " + qlty;
+                    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + PLurl + " -f " + qlty;
                 }
                 else
                 {
                     string strtNum = txtPLstart.Text;
                     string endNum = txtPLend.Text;
-                    startInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + PLurl + " -f " + qlty + " --playlist-start " + strtNum + " --playlist-end " + endNum;//ftype; +" ";
+                    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + PLurl + " -f " + qlty + " --playlist-start " + strtNum + " --playlist-end " + endNum;//ftype; +" ";
                 }
 
+                exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
+                exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from hidden console
                 try
                 {
+                    
+                    
+                   
                     // Start the process with the info we specified.
-                    // Call WaitForExit and then the using statement will close.
-                    using (Process exeProcess = Process.Start(startInfo))
+                    exeProcess.Start();
+                    exeProcess.BeginOutputReadLine();
+                    exeProcess.BeginErrorReadLine();
+                    //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
+                    while (!exeProcess.HasExited) // Instead do this.
                     {
-
-                        exeProcess.WaitForExit();
-                        if (exeProcess.ExitCode == 0)
-                        {
-                            MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        Application.DoEvents(); // This keeps the form responsive by processing events
                     }
+                    if (exeProcess.ExitCode == 0)
+                    {
+                        MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    
                 }
                 catch
                 {
@@ -305,7 +316,18 @@ namespace Youtube_downloader
                 }
             }
         }
-
+        void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e)
+        {
+            if (txtStatus.InvokeRequired)
+            {
+                txtStatus.BeginInvoke(new DataReceivedEventHandler(exeProcess_OutDataReceivedHandler), new[] { sender, e });
+            }
+            else
+            {
+                output = Environment.NewLine + e.Data;
+                txtStatus.AppendText(output);
+            }
+        }
         private void txtfilename_TextChanged(object sender, EventArgs e)
         {
             lblFileSpChar.Visible = true;
@@ -384,6 +406,21 @@ namespace Youtube_downloader
             else
             {
                 this.Height = 470;
+            }
+        }
+
+        private void btnRld_Click(object sender, EventArgs e)
+        {
+            if (Clipboard.ContainsText())
+            {
+                Regex isUrl = new Regex("^https?://|^www"); //if it begins with http:// or https:// or www
+                Match URLtest = isUrl.Match(Clipboard.GetText());
+                if (URLtest.Success) //copy content from clipboard only if it begins with http:// or https://
+                {
+                    txtURL.Text = Clipboard.GetText();
+                }
+
+
             }
         }
     }
