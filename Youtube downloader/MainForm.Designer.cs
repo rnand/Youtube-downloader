@@ -383,19 +383,20 @@
             // 
             // btnHideSt
             // 
-            this.btnHideSt.Location = new System.Drawing.Point(632, 421);
+            this.btnHideSt.Location = new System.Drawing.Point(611, 415);
             this.btnHideSt.Name = "btnHideSt";
-            this.btnHideSt.Size = new System.Drawing.Size(84, 22);
+            this.btnHideSt.Size = new System.Drawing.Size(106, 22);
             this.btnHideSt.TabIndex = 25;
-            this.btnHideSt.Text = "Hide Status";
+            this.btnHideSt.Text = "Show/Hide Status";
             this.btnHideSt.UseVisualStyleBackColor = true;
             this.btnHideSt.Visible = false;
+            this.btnHideSt.Click += new System.EventHandler(this.btnHideSt_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 472);
+            this.ClientSize = new System.Drawing.Size(729, 442);
             this.Controls.Add(this.btnHideSt);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.linkgit);

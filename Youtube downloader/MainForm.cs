@@ -191,16 +191,12 @@ namespace Youtube_downloader
                 }
                 else
                 {
-                    this.Height = 530;
-                    if (txtStatus.Visible == false)
-                    {
-                        txtStatus.Visible = true;
+                    this.Height = 530; //resize the form
+                    //show the text box
+                    txtStatus.Visible = true;
 
-                    }
-                    else
-                    {
-                        txtStatus.Visible = false;
-                    }
+                    //show the 'hide status' button
+                    btnHideSt.Visible = true;
                     vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
                     //MessageBox.Show(vID);
                     string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
@@ -369,6 +365,26 @@ namespace Youtube_downloader
         private void linkgit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.github.com/rnand/");
+        }
+
+        private void btnHideSt_Click(object sender, EventArgs e)
+        {
+            if (txtStatus.Visible == false)
+            {
+                txtStatus.Visible = true;
+            }
+            else
+            {
+                txtStatus.Visible = false;
+            }
+            if (this.Height == 470)
+            {
+                this.Height = 530;
+            }
+            else
+            {
+                this.Height = 470;
+            }
         }
     }
    
