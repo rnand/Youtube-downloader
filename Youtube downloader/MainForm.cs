@@ -389,7 +389,7 @@ namespace Youtube_downloader
 
                 foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)"))
                 {
-                    prgrsbr.PerformStep();
+                    prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
                 }
             }
         }
