@@ -63,6 +63,7 @@
             this.btnHideSt = new System.Windows.Forms.Button();
             this.btnRld = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.prgrsbr = new System.Windows.Forms.ProgressBar();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -125,7 +126,7 @@
             this.groupBoxQlty.Controls.Add(this.rdbsd480);
             this.groupBoxQlty.Controls.Add(this.rdbhd720);
             this.groupBoxQlty.Controls.Add(this.rdbhd1080);
-            this.groupBoxQlty.Location = new System.Drawing.Point(124, 264);
+            this.groupBoxQlty.Location = new System.Drawing.Point(124, 252);
             this.groupBoxQlty.Name = "groupBoxQlty";
             this.groupBoxQlty.Size = new System.Drawing.Size(225, 137);
             this.groupBoxQlty.TabIndex = 8;
@@ -212,7 +213,7 @@
             // 
             this.groupBoxFtype.Controls.Add(this.rdbwebm);
             this.groupBoxFtype.Controls.Add(this.rdbmp4);
-            this.groupBoxFtype.Location = new System.Drawing.Point(392, 264);
+            this.groupBoxFtype.Location = new System.Drawing.Point(392, 252);
             this.groupBoxFtype.Name = "groupBoxFtype";
             this.groupBoxFtype.Size = new System.Drawing.Size(213, 137);
             this.groupBoxFtype.TabIndex = 15;
@@ -413,11 +414,20 @@
             this.btnRld.UseVisualStyleBackColor = true;
             this.btnRld.Click += new System.EventHandler(this.btnRld_Click);
             // 
+            // prgrsbr
+            // 
+            this.prgrsbr.Location = new System.Drawing.Point(22, 392);
+            this.prgrsbr.Name = "prgrsbr";
+            this.prgrsbr.Size = new System.Drawing.Size(687, 14);
+            this.prgrsbr.TabIndex = 27;
+            this.prgrsbr.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 442);
+            this.Controls.Add(this.prgrsbr);
             this.Controls.Add(this.btnRld);
             this.Controls.Add(this.btnHideSt);
             this.Controls.Add(this.txtStatus);
@@ -489,6 +499,7 @@
         private System.Windows.Forms.Button btnHideSt;
         private System.Windows.Forms.Button btnRld;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ProgressBar prgrsbr;
     }
 }
 

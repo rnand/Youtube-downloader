@@ -68,9 +68,12 @@ namespace Youtube_downloader
                 this.Height = 530; //resize the form
                 //show the text box
                 txtStatus.Visible = true;
-
+                
                 //show the 'hide status' button
                 btnHideSt.Visible = true;
+
+                //show the progressbar
+                prgrsbr.Visible = true;
                 
                 
                 //MessageBox.Show("Tjorf frseter cionmf spgen (jeiotlfust). This feature coming soon (playlist)");
@@ -212,6 +215,10 @@ namespace Youtube_downloader
 
                     //show the 'hide status' button
                     btnHideSt.Visible = true;
+
+                    //show the progressbar
+                    prgrsbr.Visible = true;
+
                     vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
                     //MessageBox.Show(vID);
                     string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
@@ -341,11 +348,32 @@ namespace Youtube_downloader
             
             if (exeProcess.ExitCode == 0)
             {
+                prgrsbr.BeginInvoke(new Action(() =>    
+                {                                      
+                    prgrsbr.Value = 100;         //yes this is cheating, but who cares if it works lol!
+                }                                  
+                ));   
                 MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //hide the progressbar
+                //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
+                prgrsbr.BeginInvoke(new Action(() =>    //All
+                {                                      //of
+                    prgrsbr.Visible = false;          //these
+                }                                    //lines
+                ));                                 //are required to just hide the progress bar!
             }
             else
             {
                 MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                //hide the progressbar
+                //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
+                prgrsbr.BeginInvoke(new Action(() =>    //All
+                    {                                  //of
+                        prgrsbr.Visible = false;      //these
+                    }                                //lines
+                ));                                 //are required to just hide the progress bar!
             }
         }
         void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e)
@@ -358,6 +386,11 @@ namespace Youtube_downloader
             {
                 output = Environment.NewLine + e.Data;
                 txtStatus.AppendText(output);
+
+                foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)"))
+                {
+                    prgrsbr.PerformStep();
+                }
             }
         }
         private void txtfilename_TextChanged(object sender, EventArgs e)
