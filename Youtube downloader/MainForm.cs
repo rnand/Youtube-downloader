@@ -387,10 +387,12 @@ namespace Youtube_downloader
                 output = Environment.NewLine + e.Data;
                 txtStatus.AppendText(output);
 
-                //foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the percentage data in the output
-                //{
-                    prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
-                //}
+                foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the percentage data in the output
+                {
+
+                    //prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
+                    prgrsbr.Value = (int)Convert.ToDecimal(match.Value);//now this, is more like it.
+                }
             }
         }
         private void txtfilename_TextChanged(object sender, EventArgs e)

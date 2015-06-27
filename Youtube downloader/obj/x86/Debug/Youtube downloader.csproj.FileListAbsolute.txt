@@ -26,3 +26,4 @@ H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloade
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\YouTube downloader.exe.manifest
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\YouTube downloader.application
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\Youtube_downloader.MainForm.resources
+H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\Youtube downloader.csprojResolveAssemblyReference.cache
