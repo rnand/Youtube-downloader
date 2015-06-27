@@ -385,6 +385,8 @@
             this.txtStatus.Location = new System.Drawing.Point(12, 443);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtStatus.Size = new System.Drawing.Size(705, 56);
             this.txtStatus.TabIndex = 24;
             this.txtStatus.Visible = false;
