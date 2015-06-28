@@ -26,7 +26,7 @@ namespace Youtube_downloader
         {
             radYTtitle.Checked = true;
             //linkgit.Links.Add(6,4,"http://www.github.com/rnand/");
-            if (Clipboard.ContainsText())
+            if (Clipboard.ContainsText()) //check whether the clipboard contains text data
             {
                 Regex isUrl = new Regex("^https?://|^www"); //if it begins with http:// or https:// or www
                 Match URLtest = isUrl.Match(Clipboard.GetText());
@@ -38,7 +38,7 @@ namespace Youtube_downloader
                 
             }
             
-            txtdir.Text = Settings.Default.CustomPath;
+            txtdir.Text = Settings.Default.CustomPath; //save the default path to this variable
             if (Settings.Default.CustomPath != "")
             {
                 chkDefLoc.Checked = true;
@@ -63,9 +63,9 @@ namespace Youtube_downloader
             {
                 MessageBox.Show("Enter the required values.", "Values needed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (chkPlaylst.Checked == true)
+            else if (chkPlaylst.Checked == true)  //refactoring required in the future
             {
-                this.Height = 530; //resize the form
+                this.Height = 530; //resize the form        
                 //show the text box
                 txtStatus.Visible = true;
                 
@@ -165,7 +165,7 @@ namespace Youtube_downloader
                 exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
                 exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from console
 
-                exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler);
+                exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler); //event handler to handle process exit
 
                 try
                 {
@@ -308,7 +308,7 @@ namespace Youtube_downloader
                     exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
                     exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from console
 
-                    exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler);
+                    exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler); //handle process exit
                     try
                     {
 
