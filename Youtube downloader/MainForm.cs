@@ -297,7 +297,7 @@ namespace Youtube_downloader
                     exeProcess.StartInfo.FileName = ex1;
                     //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     if (radYTtitle.Checked)
-                    {
+                    { //set the arguments to the process
                         exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + yURL + " -f " + qlty;
                     }
                     else
