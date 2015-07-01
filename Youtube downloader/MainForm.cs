@@ -199,7 +199,7 @@ namespace Youtube_downloader
             else
             {
                 
-                Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase); //the youtube url checker regex
                 string vURL = txtURL.Text;
                 string vID;//stores video ID
                 Match match = linkParser.Match(vURL);//match the pattern
@@ -380,12 +380,12 @@ namespace Youtube_downloader
         {
             if (txtStatus.InvokeRequired)
             {
-                txtStatus.BeginInvoke(new DataReceivedEventHandler(exeProcess_OutDataReceivedHandler), new[] { sender, e });
+                txtStatus.BeginInvoke(new DataReceivedEventHandler(exeProcess_OutDataReceivedHandler), new[] { sender, e }); //invoke event handler. This is required because txtStatus is in UI thread and the process which invokes it is in another.
             }
             else
             {
-                output = Environment.NewLine + e.Data;
-                txtStatus.AppendText(output);
+                output = Environment.NewLine + e.Data; //add a 'new line' to the status data from the process
+                txtStatus.AppendText(output); //append the status data to the textbox
 
                 foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the percentage data in the output
                 {
@@ -416,7 +416,7 @@ namespace Youtube_downloader
             if (chkDefLoc.Checked == true&&txtdir.Text!=null)
             {
                 Settings.Default.CustomPath = txtdir.Text;
-                Settings.Default.Save();
+                Settings.Default.Save();    //save the default file location setting
             }
         }
 
