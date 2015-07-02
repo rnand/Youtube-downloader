@@ -4,7 +4,7 @@ This is a GUI version of youtube-dl found here:https://rg3.github.io/youtube-dl/
 
 This software is the result of my realization that most people (including me) are too stupid or just lazy to use the command-line tool 'youtube-dl'. So I decided to build a GUI for it with only the most bare-bone features (youtube-dl has a ton of features which are not available in my version - maybe they will soon be available :p).
 
-The ability to queue videos will be coming soon. In the mean time, you can add all the videos that you want to a youtube playlist and then download them.
+The ability to queue videos and the ability to download more than one video at a time will be coming soon. In the mean time, you can add all the videos that you want to a youtube playlist and then download them.
 
 **To download the executable**, go to **downloads** section under releases : https://github.com/rnand/Youtuble-downloader/releases
 
