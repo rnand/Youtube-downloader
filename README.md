@@ -8,9 +8,9 @@ The ability to queue videos and the ability to download more than one video at a
 
 **To download the executable**, go to **downloads** section under releases : https://github.com/rnand/Youtuble-downloader/releases
 
-You need .net framework 4 to run the application.
+You need dot net framework 4 to run the application.
 
-You probably also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.org/download.html
+You also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.org/download.html
 
 **USAGE**
 
