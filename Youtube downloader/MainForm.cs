@@ -80,8 +80,8 @@ namespace Youtube_downloader
                 string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                 File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
                 string ftype; //the file type
-                string PLurl = txtURL.Text;
-                string fdir = txtdir.Text;
+                string PLurl = txtURL.Text; //playlist url
+                string fdir = txtdir.Text; //file dir
                 string fname = txtfilename.Text; //the file name
 
                 string qlty = "best"; //default quality
@@ -199,7 +199,7 @@ namespace Youtube_downloader
             else
             {
                 
-                Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase); //the youtube url checker regex
+                Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase); //the youtube url checker regex -- needs to add regex to check other sites
                 string vURL = txtURL.Text;
                 string vID;//stores video ID
                 Match match = linkParser.Match(vURL);//match the pattern
@@ -378,7 +378,7 @@ namespace Youtube_downloader
         }
         void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e)
         {
-            if (txtStatus.InvokeRequired)
+            if (txtStatus.InvokeRequired)  //this is required because the UI thread which contains the textbox is seperate from the process thread
             {
                 txtStatus.BeginInvoke(new DataReceivedEventHandler(exeProcess_OutDataReceivedHandler), new[] { sender, e }); //invoke event handler. This is required because txtStatus is in UI thread and the process which invokes it is in another.
             }
