@@ -25,19 +25,8 @@ namespace Youtube_downloader
         private void Form1_Load(object sender, EventArgs e)
         {
             radYTtitle.Checked = true;
-            //linkgit.Links.Add(6,4,"http://www.github.com/rnand/");
-            if (Clipboard.ContainsText()) //check whether the clipboard contains text data
-            {
-                Regex isUrl = new Regex("^https?://|^www"); //if it begins with http:// or https:// or www
-                Match URLtest = isUrl.Match(Clipboard.GetText());
-                if (URLtest.Success) //copy content from clipboard only if it begins with http:// or https://
-                {
-                    txtURL.Text = Clipboard.GetText();
-                }
-
-                
-            }
-            
+            getClipboardData();
+                        
             txtdir.Text = Settings.Default.CustomPath; //save the default path to this variable
             if (Settings.Default.CustomPath != "")
             {
@@ -76,7 +65,7 @@ namespace Youtube_downloader
                 prgrsbr.Visible = true;
                 
                 
-                //MessageBox.Show("Tjorf frseter cionmf spgen (jeiotlfust). This feature coming soon (playlist)");
+                
                 string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                 File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
                 string ftype; //the file type
@@ -480,15 +469,20 @@ namespace Youtube_downloader
 
         private void btnRld_Click(object sender, EventArgs e)
         {
+            getClipboardData();
+            
+        }
+        private void getClipboardData()
+        {
+
             if (Clipboard.ContainsText())
             {
                 Regex isUrl = new Regex("^https?://|^www"); //if it begins with http:// or https:// or www
                 Match URLtest = isUrl.Match(Clipboard.GetText());
-                if (URLtest.Success) //copy content from clipboard only if it begins with http:// or https://
+                if (URLtest.Success) //copy content from clipboard only if it begins with http:// or https:// or www
                 {
                     txtURL.Text = Clipboard.GetText();
                 }
-
 
             }
         }
