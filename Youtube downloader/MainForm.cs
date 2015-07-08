@@ -188,16 +188,16 @@ namespace Youtube_downloader
             else
             {
                 
-                Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase); //the youtube url checker regex -- needs to add regex to check other sites
+                //Regex linkParser = new Regex("^(?:https?\\:\\/\\/)?(?:www\\.)?(?:youtu\\.be\\/|youtube\\.com\\/(?:embed\\/|v\\/|watch\\?v\\=))([\\w-]{10,12})(?:[\\&\\?\\#].*?)*?(?:[\\&\\?\\#]t=([\\dhm]+s))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase); //the youtube url checker regex -- needs to add regex to check other sites
                 string vURL = txtURL.Text;
-                string vID;//stores video ID
-                Match match = linkParser.Match(vURL);//match the pattern
-                if (!match.Success)
-                {
-                    MessageBox.Show("The given URL is not a valid YouTube URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
+                //string vID;//stores video ID
+                //Match match = linkParser.Match(vURL);//match the pattern
+                //if (!match.Success)
+                //{
+                //    MessageBox.Show("The given URL is not a valid YouTube URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //}
+                //else
+                //{
                     this.Height = 530; //resize the form
                     //show the text box
                     txtStatus.Visible = true;
@@ -208,9 +208,9 @@ namespace Youtube_downloader
                     //show the progressbar
                     prgrsbr.Visible = true;
 
-                    vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
+                    //vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
                     //MessageBox.Show(vID);
-                    string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
+                    //string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
                     string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                     File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
                     string ftype; //the file type
@@ -287,11 +287,11 @@ namespace Youtube_downloader
                     //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     if (radYTtitle.Checked)
                     { //set the arguments to the process
-                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + yURL + " -f " + qlty;
+                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vURL + " -f " + qlty; //yURL -> vURL
                     }
                     else
                     {
-                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + yURL + " -f " + qlty;//ftype; +" ";
+                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vURL + " -f " + qlty;//ftype; +" ";
                     }
 
                     exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
@@ -328,7 +328,7 @@ namespace Youtube_downloader
                     {
                         //MessageBox.Show("ERROR");
                     }
-                }
+                //}
             }
         }
 
@@ -437,7 +437,7 @@ namespace Youtube_downloader
         }
         public void validate(String url)
         {
-
+            //to implement
         }
 
         private void linkgit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
