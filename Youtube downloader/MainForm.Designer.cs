@@ -325,9 +325,9 @@
             this.chkPlaylst.AutoSize = true;
             this.chkPlaylst.Location = new System.Drawing.Point(143, 60);
             this.chkPlaylst.Name = "chkPlaylst";
-            this.chkPlaylst.Size = new System.Drawing.Size(116, 17);
+            this.chkPlaylst.Size = new System.Drawing.Size(157, 17);
             this.chkPlaylst.TabIndex = 18;
-            this.chkPlaylst.Text = "URL is for a playlist";
+            this.chkPlaylst.Text = "URL is for a youtube playlist";
             this.toolTip1.SetToolTip(this.chkPlaylst, "Check if the URL you have entered is for a playlist.");
             this.chkPlaylst.UseVisualStyleBackColor = true;
             this.chkPlaylst.CheckedChanged += new System.EventHandler(this.chkPlaylst_CheckedChanged);
