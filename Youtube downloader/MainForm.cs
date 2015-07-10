@@ -25,10 +25,10 @@ namespace Youtube_downloader
         private void Form1_Load(object sender, EventArgs e)
         {
             radYTtitle.Checked = true;
-            getClipboardData();
+            getClipboardData(); //get the url
                         
             txtdir.Text = Settings.Default.CustomPath; //save the default path to this variable
-            if (Settings.Default.CustomPath != "")
+            if (Settings.Default.CustomPath != "") //check whether there is a default location already set or not
             {
                 chkDefLoc.Checked = true;
                 
@@ -37,7 +37,7 @@ namespace Youtube_downloader
    
         }
 
-        private void btnbrowse_Click(object sender, EventArgs e)
+        private void btnbrowse_Click(object sender, EventArgs e) //browse for a location/dir
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
@@ -212,7 +212,7 @@ namespace Youtube_downloader
                     //MessageBox.Show(vID);
                     //string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
                     string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
-                    File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
+                    File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl); //FLAG FLAG FLAG - check this section later for another way to implemeent this
                     string ftype; //the file type
 
                     string fdir = txtdir.Text;
