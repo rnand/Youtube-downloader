@@ -337,7 +337,7 @@ namespace Youtube_downloader
             
             if (exeProcess.ExitCode == 0)
             {
-                prgrsbr.BeginInvoke(new Action(() =>    
+                prgrsbr.BeginInvoke(new Action(() =>    //need this beacuse of different threads
                 {                                      
                     prgrsbr.Value = 100;         //yes this is cheating, but who cares if it works lol!
                 }                                  
@@ -365,7 +365,7 @@ namespace Youtube_downloader
                 ));                                 //are required to just hide the progress bar!
             }
         }
-        void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e)
+        void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e) //handle output data coming from the command line process being run
         {
             if (txtStatus.InvokeRequired)  //this is required because the UI thread which contains the textbox is seperate from the process thread
             {
@@ -445,7 +445,7 @@ namespace Youtube_downloader
             System.Diagnostics.Process.Start("https://www.github.com/rnand/");
         }
 
-        private void btnHideSt_Click(object sender, EventArgs e)
+        private void btnHideSt_Click(object sender, EventArgs e) //show/hide the status box
         {
             if (txtStatus.Visible == false)
             {
@@ -457,7 +457,7 @@ namespace Youtube_downloader
                 txtStatus.Visible = false;
                 btnHideSt.Text = "Show Status";
             }
-            if (this.Height == 470)
+            if (this.Height == 470) //resize the form
             {
                 this.Height = 530;
             }
