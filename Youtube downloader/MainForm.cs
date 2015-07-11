@@ -163,7 +163,7 @@ namespace Youtube_downloader
                    
                     // Start the process with the info we specified.
                     exeProcess.Start();
-                    exeProcess.BeginOutputReadLine();
+                    exeProcess.BeginOutputReadLine(); //need to call this method to begin the event handling and generation from the process being run
                     exeProcess.BeginErrorReadLine();
                     //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
                     while (!exeProcess.HasExited) // Instead do this.
