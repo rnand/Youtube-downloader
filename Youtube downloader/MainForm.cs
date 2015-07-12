@@ -380,7 +380,7 @@ namespace Youtube_downloader
                 {
 
                     //prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
-                    prgrsbr.Value = (int)Convert.ToDecimal(match.Value);//now this, is more like it.
+                    prgrsbr.Value = (int)Convert.ToDecimal(match.Value);//now this, is more like it. we need to convert the decimal value to int
                 }
             }
         }
