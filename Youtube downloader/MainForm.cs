@@ -47,7 +47,8 @@ namespace Youtube_downloader
 
         private void btndwnld_Click(object sender, EventArgs e)
         {
-            
+            prgrsbr.Value = 0;//reset the progress bar
+            txtStatus.Clear();//clear the status box
             if (txtURL.Text == "" ||  txtdir.Text == "")
             {
                 MessageBox.Show("Enter the required values.", "Values needed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

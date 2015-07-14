@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouTube downloader.exe" size="12870144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouTube downloader.exe" size="12901376">
       <assemblyIdentity name="YouTube downloader" version="1.4.2.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>vcN9B3/zIA8ex2/KghSZN75pNTk=</dsig:DigestValue>
+        <dsig:DigestValue>Ygso46Gk2WaoqpVAZI6AevnZH8w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
