@@ -419,6 +419,7 @@
             // prgrsbr
             // 
             this.prgrsbr.Location = new System.Drawing.Point(22, 392);
+            this.prgrsbr.Maximum = 1000;
             this.prgrsbr.Name = "prgrsbr";
             this.prgrsbr.Size = new System.Drawing.Size(687, 14);
             this.prgrsbr.TabIndex = 27;
