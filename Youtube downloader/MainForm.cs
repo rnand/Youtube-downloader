@@ -199,136 +199,139 @@ namespace Youtube_downloader
                 //}
                 //else
                 //{
-                    this.Height = 530; //resize the form
-                    //show the text box
-                    txtStatus.Visible = true;
+                this.Height = 530; //resize the form
+                //show the text box
+                txtStatus.Visible = true;
 
-                    //show the 'hide status' button
-                    btnHideSt.Visible = true;
+                //show the 'hide status' button
+                btnHideSt.Visible = true;
 
-                    //show the progressbar
-                    prgrsbr.Visible = true;
+                //show the progressbar
+                prgrsbr.Visible = true;
 
-                    //vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
-                    //MessageBox.Show(vID);
-                    //string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
-                    string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
-                    File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl); //FLAG FLAG FLAG - check this section later for another way to implemeent this
-                    string ftype; //the file type
+                //vID = match.Groups[1].Value;//the extracted video ID is stored in Groups[1]
+                //MessageBox.Show(vID);
+                //string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
+                string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
+                File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl); //FLAG FLAG FLAG - check this section later for another way to implemeent this
+                string ftype; //the file type
 
-                    string fdir = txtdir.Text;
-                    string fname = txtfilename.Text; //the file name
+                string fdir = txtdir.Text;
+                string fname = txtfilename.Text; //the file name
 
-                    string qlty = "best"; //default quality
-                    ////////////////////////////////////////////////////////////////
-                    //the following options set the quality for mp4
+                string qlty = "best"; //default quality
+                ////////////////////////////////////////////////////////////////
+                //the following options set the quality for mp4
 
-                    ftype = "mp4";
-                    if (rdb4k.Checked && rdbmp4.Checked)
-                    {
-                        qlty = "266+141"; //266 for mp4 video @ 2160p, H.264, Video bitrate (Mbits/s) : 12.5-13.5 
-                        //141 for mp4 audio AAC, Bitrate (kbits/s) : 256
-                    }
-                    else if (rdbhd1080.Checked && rdbmp4.Checked)
-                    {
-                        qlty = "137+140"; //137 for mp4 video @ 1080p, H.264, Video bitrate (Mbits/s) : 2.5-3
-                        //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
-                    }
-                    else if (rdbhd720.Checked && rdbmp4.Checked)
-                    {
-                        qlty = "22"; //22 for mp4 video @ 720p, H.264, Video bitrate (Mbits/s) : 2-3
-                        //Audio AAC @ 192 kbits/s
-                    }
-                    else if (rdbsd480.Checked && rdbmp4.Checked)
-                    {
-                        qlty = "135+140";//135 for mp4 video @ 480p, H.264, Video bitrate (Mbits/s) : 0.5-1
-                        //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
-                    }
-                    else if (rdbsd360.Checked && rdbmp4.Checked)
-                    {
-                        qlty = "18"; //18 for mp4 video @ 360p, H.264, Video bitrate (Mbits/s) : 0.5
-                        //Audio AAC @ 96 kbits/s
-                    }
-                    ////////////////////////////////////////////////////////////////
-                    //the following options set quality for webm
+                ftype = "mp4";
+                if (rdb4k.Checked && rdbmp4.Checked)
+                {
+                    qlty = "266+141"; //266 for mp4 video @ 2160p, H.264, Video bitrate (Mbits/s) : 12.5-13.5 
+                    //141 for mp4 audio AAC, Bitrate (kbits/s) : 256
+                }
+                else if (rdbhd1080.Checked && rdbmp4.Checked)
+                {
+                    qlty = "137+140"; //137 for mp4 video @ 1080p, H.264, Video bitrate (Mbits/s) : 2.5-3
+                    //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+                }
+                else if (rdbhd720.Checked && rdbmp4.Checked)
+                {
+                    qlty = "22"; //22 for mp4 video @ 720p, H.264, Video bitrate (Mbits/s) : 2-3
+                    //Audio AAC @ 192 kbits/s
+                }
+                else if (rdbsd480.Checked && rdbmp4.Checked)
+                {
+                    qlty = "135+140";//135 for mp4 video @ 480p, H.264, Video bitrate (Mbits/s) : 0.5-1
+                    //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+                }
+                else if (rdbsd360.Checked && rdbmp4.Checked)
+                {
+                    qlty = "18"; //18 for mp4 video @ 360p, H.264, Video bitrate (Mbits/s) : 0.5
+                    //Audio AAC @ 96 kbits/s
+                }
+                ////////////////////////////////////////////////////////////////
+                //the following options set quality for webm
 
-                    if (rdbwebm.Checked)
-                    {
-                        ftype = "webm";
-                    }
+                if (rdbwebm.Checked)
+                {
+                    ftype = "webm";
+                }
 
-                    if (rdbhd1080.Checked && rdbwebm.Checked)
-                    {
-                        qlty = "248+140"; //248 for webm video @ 1080p, VP9, Video bitrate (Mbits/s) : 1.5
-                        //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
-                    }
-                    else if (rdbhd720.Checked && rdbwebm.Checked)
-                    {
-                        qlty = "247+140";//247 for webm video @ 720p, VP9, Video bitrate (Mbits/s) : 0.7-0.8
-                        //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
-                    }
-                    else if (rdbsd480.Checked && rdbwebm.Checked)
-                    {
-                        qlty = "244+140";//247 for webm video @ 480p, VP9, Video bitrate (Mbits/s) : 0.5
-                        //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
-                    }
-                    else if (rdbsd360.Checked && rdbwebm.Checked)
-                    {
-                        qlty = "43";  //43 for webm video @ 360p, VP8, Video bitrate (Mbits/s) : 0.5
-                        //Audio Vorbis @ 128 kbits/s
-                    }
+                if (rdbhd1080.Checked && rdbwebm.Checked)
+                {
+                    qlty = "248+140"; //248 for webm video @ 1080p, VP9, Video bitrate (Mbits/s) : 1.5
+                    //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+                }
+                else if (rdbhd720.Checked && rdbwebm.Checked)
+                {
+                    qlty = "247+140";//247 for webm video @ 720p, VP9, Video bitrate (Mbits/s) : 0.7-0.8
+                    //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+                }
+                else if (rdbsd480.Checked && rdbwebm.Checked)
+                {
+                    qlty = "244+140";//247 for webm video @ 480p, VP9, Video bitrate (Mbits/s) : 0.5
+                    //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+                }
+                else if (rdbsd360.Checked && rdbwebm.Checked)
+                {
+                    qlty = "43";  //43 for webm video @ 360p, VP8, Video bitrate (Mbits/s) : 0.5
+                    //Audio Vorbis @ 128 kbits/s
+                }
 
                     
-                    //ProcessStartInfo startInfo = new ProcessStartInfo();
-                    exeProcess.StartInfo.RedirectStandardOutput = true;
-                    exeProcess.StartInfo.CreateNoWindow = true;
-                    exeProcess.StartInfo.UseShellExecute = false;
-                    exeProcess.EnableRaisingEvents = true;
-                    exeProcess.StartInfo.FileName = ex1;
-                    //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    if (radYTtitle.Checked)
-                    { //set the arguments to the process
-                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vURL + " -f " + qlty; //yURL -> vURL
-                    }
-                    else
+                //ProcessStartInfo startInfo = new ProcessStartInfo();
+                exeProcess.StartInfo.RedirectStandardOutput = true;
+                exeProcess.StartInfo.CreateNoWindow = true;
+                exeProcess.StartInfo.UseShellExecute = false;
+                exeProcess.EnableRaisingEvents = true;
+                exeProcess.StartInfo.FileName = ex1;
+                //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                if (radYTtitle.Checked)
+                { //set the arguments to the process
+                    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vURL + " -f " + qlty; //yURL -> vURL
+                }
+                else
+                {
+                    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vURL + " -f " + qlty;//ftype; +" ";
+                }
+
+                exeProcess.OutputDataReceived -= exeProcess_OutDataReceivedHandler; //remove event handler if already exists
+                exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers 
+                exeProcess.ErrorDataReceived -= exeProcess_OutDataReceivedHandler;  //remove event handler if already exists
+                exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers
+
+                exeProcess.Exited -= new EventHandler(exeProcess_ExitedHandler);  //remove event handler if already exists
+                exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler); //handle process exit
+                try
+                {
+
+                    // Start the process with the info we specified.
+                    exeProcess.Start();
+                    exeProcess.BeginOutputReadLine();
+                    exeProcess.BeginErrorReadLine();
+                    //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
+                    while (!exeProcess.HasExited) // Instead do this.
                     {
-                        exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vURL + " -f " + qlty;//ftype; +" ";
+                        Application.DoEvents(); // This keeps the form responsive by processing events
                     }
-
-                    exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers when 
-                    exeProcess.ErrorDataReceived += exeProcess_OutDataReceivedHandler; //   data is received from console
-
-                    exeProcess.Exited += new EventHandler(exeProcess_ExitedHandler); //handle process exit
-                    try
-                    {
-
-                        // Start the process with the info we specified.
-                        exeProcess.Start();
-                        exeProcess.BeginOutputReadLine();
-                        exeProcess.BeginErrorReadLine();
-                        //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
-                        while (!exeProcess.HasExited) // Instead do this.
-                        {
-                            Application.DoEvents(); // This keeps the form responsive by processing events
-                        }
-                        //if (exeProcess.HasExited)
-                        //{
-                        //    if (exeProcess.ExitCode == 0)
-                        //    {
-                        //        MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    }
-                        //    else
-                        //    {
-                        //        MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    }
-                        //}
+                    //if (exeProcess.HasExited)
+                    //{
+                    //    if (exeProcess.ExitCode == 0)
+                    //    {
+                    //        MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //    }
+                    //    else
+                    //    {
+                    //        MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //    }
+                    //}
                         
 
-                    }
-                    catch
-                    {
-                        //MessageBox.Show("ERROR");
-                    }
+                }
+                catch
+                {
+                    //MessageBox.Show("ERROR");
+                }
                 //}
             }
         }
