@@ -338,12 +338,14 @@ namespace Youtube_downloader
 
         void exeProcess_ExitedHandler(object sender, EventArgs e)
         {
-            
+            exeProcess.CancelOutputRead();
+            //exeProcess.CancelErrorRead();
             if (exeProcess.ExitCode == 0)
             {
                 prgrsbr.BeginInvoke(new Action(() =>    //need this beacuse of different threads
                 {                                      
                     prgrsbr.Value = 1000;         //yes this is cheating, but who cares if it works lol!
+                    
                 }                                  
                 ));   
                 MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);

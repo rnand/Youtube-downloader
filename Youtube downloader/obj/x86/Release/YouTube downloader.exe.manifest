@@ -4,7 +4,7 @@
   <description asmv2:iconFile="YouTube-icon-dark.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="YouTube downloader" version="1.4.2.0" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="YouTube downloader" version="1.4.3.0" language="neutral" processorArchitecture="x86" />
     <commandLine file="YouTube downloader.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -44,13 +44,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouTube downloader.exe" size="12900352">
-      <assemblyIdentity name="YouTube downloader" version="1.4.2.0" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="YouTube downloader" version="1.4.3.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>hh9rmXVURYiL/OhM8I+ohssq7SU=</dsig:DigestValue>
+        <dsig:DigestValue>jNp94zy4a7V6sHPSaNTsx/pfvHY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
