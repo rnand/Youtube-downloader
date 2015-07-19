@@ -85,6 +85,7 @@
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(529, 20);
             this.txtURL.TabIndex = 1;
+            this.txtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
             // 
             // lblSave
             // 

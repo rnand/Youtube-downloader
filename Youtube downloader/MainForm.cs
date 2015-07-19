@@ -492,6 +492,16 @@ namespace Youtube_downloader
 
             }
         }
+
+        private void txtURL_TextChanged(object sender, EventArgs e)
+        {
+            Regex isYoutube = new Regex("youtube|youtu.be");
+            Match checkUrl = isYoutube.Match(txtURL.Text);
+            if (checkUrl.Success)
+            {
+                //implement backgroundworker to retrieve youtube title
+            }
+        }
     }
    
 
