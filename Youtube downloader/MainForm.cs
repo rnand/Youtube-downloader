@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -8,8 +9,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Web;
+using System.Net;
 using System.Text.RegularExpressions;
 using YouTube_downloader.Properties;
+
 
 namespace Youtube_downloader
 
@@ -499,9 +503,50 @@ namespace Youtube_downloader
             Match checkUrl = isYoutube.Match(txtURL.Text);
             if (checkUrl.Success)
             {
-                //implement backgroundworker to retrieve youtube title
+                var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text };
+                YTtitlebackgroundWorker.RunWorkerAsync(urlData);
+
             }
         }
+        private string GetTitle(string URL)
+        {
+            string id = GetArgs(URL, "v", '?');
+            WebClient client = new WebClient();
+            return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
+        }
+
+        private string GetArgs(string args, string key, char query)
+        {
+            int iqs = args.IndexOf(query);
+            string querystring = null;
+            if (iqs != -1)
+            {
+                querystring = (iqs < args.Length - 1) ? args.Substring(iqs + 1) : String.Empty;
+                NameValueCollection nvcArgs = HttpUtility.ParseQueryString(querystring);
+                return nvcArgs[key];
+            }
+            return String.Empty;
+        }
+
+        private void YTtitlebackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var urldata = (URLData)e.Argument;
+            urldata.title = GetTitle(urldata.URL);
+            e.Result = urldata;
+        }
+
+        private void YTtitlebackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var urltitlereturn = (URLData)e.Result;
+            txtfilename.Text = urltitlereturn.title;
+        }
+
+    }
+
+    class URLData
+    {
+        public string URL;
+        public string title;
     }
    
 
