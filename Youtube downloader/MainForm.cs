@@ -531,6 +531,10 @@ namespace Youtube_downloader
         private void YTtitlebackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             var urldata = (URLData)e.Argument;
+            lblRetrv.Invoke((MethodInvoker)delegate
+            {
+                lblRetrv.Visible = true;
+            });
             urldata.title = GetTitle(urldata.URL);
             e.Result = urldata;
         }
@@ -538,6 +542,7 @@ namespace Youtube_downloader
         private void YTtitlebackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             var urltitlereturn = (URLData)e.Result;
+            lblRetrv.Visible = false;
             txtfilename.Text = urltitlereturn.title;
         }
 

@@ -50,6 +50,7 @@
             this.btndwnld = new System.Windows.Forms.Button();
             this.lblFileSpChar = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblRetrv = new System.Windows.Forms.Label();
             this.radCustomFileName = new System.Windows.Forms.RadioButton();
             this.radYTtitle = new System.Windows.Forms.RadioButton();
             this.chkDefLoc = new System.Windows.Forms.CheckBox();
@@ -64,6 +65,7 @@
             this.btnRld = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.prgrsbr = new System.Windows.Forms.ProgressBar();
+            this.YTtitlebackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -275,6 +277,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblRetrv);
             this.groupBox1.Controls.Add(this.radCustomFileName);
             this.groupBox1.Controls.Add(this.radYTtitle);
             this.groupBox1.Controls.Add(this.lblFileSpChar);
@@ -285,6 +288,16 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "File Name";
+            // 
+            // lblRetrv
+            // 
+            this.lblRetrv.AutoSize = true;
+            this.lblRetrv.Location = new System.Drawing.Point(141, 55);
+            this.lblRetrv.Name = "lblRetrv";
+            this.lblRetrv.Size = new System.Drawing.Size(83, 13);
+            this.lblRetrv.TabIndex = 11;
+            this.lblRetrv.Text = "Retreiving title...";
+            this.lblRetrv.Visible = false;
             // 
             // radCustomFileName
             // 
@@ -426,6 +439,11 @@
             this.prgrsbr.TabIndex = 27;
             this.prgrsbr.Visible = false;
             // 
+            // YTtitlebackgroundWorker
+            // 
+            this.YTtitlebackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.YTtitlebackgroundWorker_DoWork);
+            this.YTtitlebackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.YTtitlebackgroundWorker_RunWorkerCompleted);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,6 +522,8 @@
         private System.Windows.Forms.Button btnRld;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ProgressBar prgrsbr;
+        private System.Windows.Forms.Label lblRetrv;
+        private System.ComponentModel.BackgroundWorker YTtitlebackgroundWorker;
     }
 }
 
