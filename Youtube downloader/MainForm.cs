@@ -28,7 +28,7 @@ namespace Youtube_downloader
         private Process exeProcess = new Process();
         private void Form1_Load(object sender, EventArgs e)
         {
-            radYTtitle.Checked = true;
+            //radYTtitle.Checked = true;
             getClipboardData(); //get the url
                         
             txtdir.Text = Settings.Default.CustomPath; //save the default path to this variable
@@ -290,14 +290,14 @@ namespace Youtube_downloader
                 exeProcess.EnableRaisingEvents = true;
                 exeProcess.StartInfo.FileName = ex1;
                 //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                if (radYTtitle.Checked)
-                { //set the arguments to the process
-                    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vURL + " -f " + qlty; //yURL -> vURL
-                }
-                else
-                {
-                    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vURL + " -f " + qlty;//ftype; +" ";
-                }
+                //if (radYTtitle.Checked)
+                //{ //set the arguments to the process
+                //    exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vURL + " -f " + qlty; //yURL -> vURL
+                //}
+                //else
+                //{
+                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vURL + " -f " + qlty;//ftype; +" ";
+                //}
 
                 exeProcess.OutputDataReceived -= exeProcess_OutDataReceivedHandler; //remove event handler if already exists
                 exeProcess.OutputDataReceived += exeProcess_OutDataReceivedHandler; // generate event handlers 
@@ -396,18 +396,18 @@ namespace Youtube_downloader
         }
         private void txtfilename_TextChanged(object sender, EventArgs e)
         {
-            lblFileSpChar.Visible = true;
-            radCustomFileName.Checked = true;
+            //lblFileSpChar.Visible = true;
+            //radCustomFileName.Checked = true;
         }
 
         private void radYTtitle_CheckedChanged(object sender, EventArgs e)
         {
-            lblFileSpChar.Visible = false;
+            //lblFileSpChar.Visible = false;
         }
 
         private void radCustomFileName_CheckedChanged(object sender, EventArgs e)
         {
-            lblFileSpChar.Visible = true;
+            //lblFileSpChar.Visible = true;
         }
 
         private void chkDefLoc_CheckedChanged(object sender, EventArgs e)
@@ -432,12 +432,12 @@ namespace Youtube_downloader
                 txtPLend.Enabled = true;
                 lblPLstart.Enabled = true;
                 txtPLstart.Enabled = true;
-                radCustomFileName.Enabled = false;
+                //radCustomFileName.Enabled = false;
                 txtfilename.Enabled = false;
             }
             else
             {
-                radCustomFileName.Enabled = true;
+                //radCustomFileName.Enabled = true;
                 txtfilename.Enabled = true;
                 lblPLend.Enabled = false;
                 txtPLend.Enabled = false;
@@ -543,7 +543,15 @@ namespace Youtube_downloader
         {
             var urltitlereturn = (URLData)e.Result;
             lblRetrv.Visible = false;
-            txtfilename.Text = urltitlereturn.title;
+            if (urltitlereturn.title == null)
+            {
+                txtfilename.Text = "Unknown video";
+            }
+            else
+            {
+                txtfilename.Text = Regex.Replace(urltitlereturn.title, @"[^\w\.@-]", " "); //filter illegal characters form title/filename
+            }
+            
         }
 
     }

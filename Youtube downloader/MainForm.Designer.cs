@@ -46,13 +46,7 @@
             this.groupBoxFtype = new System.Windows.Forms.GroupBox();
             this.rdbwebm = new System.Windows.Forms.RadioButton();
             this.rdbmp4 = new System.Windows.Forms.RadioButton();
-            this.txtfilename = new System.Windows.Forms.TextBox();
             this.btndwnld = new System.Windows.Forms.Button();
-            this.lblFileSpChar = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblRetrv = new System.Windows.Forms.Label();
-            this.radCustomFileName = new System.Windows.Forms.RadioButton();
-            this.radYTtitle = new System.Windows.Forms.RadioButton();
             this.chkDefLoc = new System.Windows.Forms.CheckBox();
             this.chkPlaylst = new System.Windows.Forms.CheckBox();
             this.lblPLstart = new System.Windows.Forms.Label();
@@ -66,9 +60,11 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.prgrsbr = new System.Windows.Forms.ProgressBar();
             this.YTtitlebackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtfilename = new System.Windows.Forms.TextBox();
+            this.lblRetrv = new System.Windows.Forms.Label();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblURL
@@ -129,7 +125,7 @@
             this.groupBoxQlty.Controls.Add(this.rdbsd480);
             this.groupBoxQlty.Controls.Add(this.rdbhd720);
             this.groupBoxQlty.Controls.Add(this.rdbhd1080);
-            this.groupBoxQlty.Location = new System.Drawing.Point(124, 252);
+            this.groupBoxQlty.Location = new System.Drawing.Point(124, 212);
             this.groupBoxQlty.Name = "groupBoxQlty";
             this.groupBoxQlty.Size = new System.Drawing.Size(225, 137);
             this.groupBoxQlty.TabIndex = 8;
@@ -216,7 +212,7 @@
             // 
             this.groupBoxFtype.Controls.Add(this.rdbwebm);
             this.groupBoxFtype.Controls.Add(this.rdbmp4);
-            this.groupBoxFtype.Location = new System.Drawing.Point(392, 252);
+            this.groupBoxFtype.Location = new System.Drawing.Point(392, 212);
             this.groupBoxFtype.Name = "groupBoxFtype";
             this.groupBoxFtype.Size = new System.Drawing.Size(213, 137);
             this.groupBoxFtype.TabIndex = 15;
@@ -245,17 +241,9 @@
             this.rdbmp4.Text = "MP4";
             this.rdbmp4.UseVisualStyleBackColor = true;
             // 
-            // txtfilename
-            // 
-            this.txtfilename.Location = new System.Drawing.Point(129, 51);
-            this.txtfilename.Name = "txtfilename";
-            this.txtfilename.Size = new System.Drawing.Size(510, 20);
-            this.txtfilename.TabIndex = 7;
-            this.txtfilename.TextChanged += new System.EventHandler(this.txtfilename_TextChanged);
-            // 
             // btndwnld
             // 
-            this.btndwnld.Location = new System.Drawing.Point(327, 408);
+            this.btndwnld.Location = new System.Drawing.Point(317, 390);
             this.btndwnld.Name = "btndwnld";
             this.btndwnld.Size = new System.Drawing.Size(95, 29);
             this.btndwnld.TabIndex = 17;
@@ -263,65 +251,6 @@
             this.toolTip1.SetToolTip(this.btndwnld, "Click to download the video.");
             this.btndwnld.UseVisualStyleBackColor = true;
             this.btndwnld.Click += new System.EventHandler(this.btndwnld_Click);
-            // 
-            // lblFileSpChar
-            // 
-            this.lblFileSpChar.AutoSize = true;
-            this.lblFileSpChar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileSpChar.Location = new System.Drawing.Point(97, 74);
-            this.lblFileSpChar.Name = "lblFileSpChar";
-            this.lblFileSpChar.Size = new System.Drawing.Size(490, 19);
-            this.lblFileSpChar.TabIndex = 10;
-            this.lblFileSpChar.Text = "File name should not contain special characters such as  \" : ; / \\ % $ etc..";
-            this.lblFileSpChar.Visible = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblRetrv);
-            this.groupBox1.Controls.Add(this.radCustomFileName);
-            this.groupBox1.Controls.Add(this.radYTtitle);
-            this.groupBox1.Controls.Add(this.lblFileSpChar);
-            this.groupBox1.Controls.Add(this.txtfilename);
-            this.groupBox1.Location = new System.Drawing.Point(22, 147);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(687, 103);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "File Name";
-            // 
-            // lblRetrv
-            // 
-            this.lblRetrv.AutoSize = true;
-            this.lblRetrv.Location = new System.Drawing.Point(141, 55);
-            this.lblRetrv.Name = "lblRetrv";
-            this.lblRetrv.Size = new System.Drawing.Size(83, 13);
-            this.lblRetrv.TabIndex = 11;
-            this.lblRetrv.Text = "Retreiving title...";
-            this.lblRetrv.Visible = false;
-            // 
-            // radCustomFileName
-            // 
-            this.radCustomFileName.AutoSize = true;
-            this.radCustomFileName.Location = new System.Drawing.Point(60, 51);
-            this.radCustomFileName.Name = "radCustomFileName";
-            this.radCustomFileName.Size = new System.Drawing.Size(63, 17);
-            this.radCustomFileName.TabIndex = 6;
-            this.radCustomFileName.TabStop = true;
-            this.radCustomFileName.Text = "Custom:";
-            this.radCustomFileName.UseVisualStyleBackColor = true;
-            this.radCustomFileName.CheckedChanged += new System.EventHandler(this.radCustomFileName_CheckedChanged);
-            // 
-            // radYTtitle
-            // 
-            this.radYTtitle.AutoSize = true;
-            this.radYTtitle.Location = new System.Drawing.Point(60, 19);
-            this.radYTtitle.Name = "radYTtitle";
-            this.radYTtitle.Size = new System.Drawing.Size(132, 17);
-            this.radYTtitle.TabIndex = 5;
-            this.radYTtitle.TabStop = true;
-            this.radYTtitle.Text = "Same as YouTube title";
-            this.radYTtitle.UseVisualStyleBackColor = true;
-            this.radYTtitle.CheckedChanged += new System.EventHandler(this.radYTtitle_CheckedChanged);
             // 
             // chkDefLoc
             // 
@@ -407,7 +336,7 @@
             // 
             // btnHideSt
             // 
-            this.btnHideSt.Location = new System.Drawing.Point(611, 415);
+            this.btnHideSt.Location = new System.Drawing.Point(611, 397);
             this.btnHideSt.Name = "btnHideSt";
             this.btnHideSt.Size = new System.Drawing.Size(106, 22);
             this.btnHideSt.TabIndex = 25;
@@ -432,10 +361,10 @@
             // 
             // prgrsbr
             // 
-            this.prgrsbr.Location = new System.Drawing.Point(22, 392);
+            this.prgrsbr.Location = new System.Drawing.Point(16, 363);
             this.prgrsbr.Maximum = 1000;
             this.prgrsbr.Name = "prgrsbr";
-            this.prgrsbr.Size = new System.Drawing.Size(687, 14);
+            this.prgrsbr.Size = new System.Drawing.Size(697, 15);
             this.prgrsbr.TabIndex = 27;
             this.prgrsbr.Visible = false;
             // 
@@ -444,14 +373,44 @@
             this.YTtitlebackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.YTtitlebackgroundWorker_DoWork);
             this.YTtitlebackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.YTtitlebackgroundWorker_RunWorkerCompleted);
             // 
+            // txtfilename
+            // 
+            this.txtfilename.Location = new System.Drawing.Point(141, 161);
+            this.txtfilename.Name = "txtfilename";
+            this.txtfilename.Size = new System.Drawing.Size(510, 20);
+            this.txtfilename.TabIndex = 7;
+            this.txtfilename.TextChanged += new System.EventHandler(this.txtfilename_TextChanged);
+            // 
+            // lblRetrv
+            // 
+            this.lblRetrv.AutoSize = true;
+            this.lblRetrv.Location = new System.Drawing.Point(144, 165);
+            this.lblRetrv.Name = "lblRetrv";
+            this.lblRetrv.Size = new System.Drawing.Size(83, 13);
+            this.lblRetrv.TabIndex = 11;
+            this.lblRetrv.Text = "Retreiving title...";
+            this.lblRetrv.Visible = false;
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Location = new System.Drawing.Point(77, 164);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(57, 13);
+            this.lblFileName.TabIndex = 12;
+            this.lblFileName.Text = "File Name:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 442);
+            this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.prgrsbr);
+            this.Controls.Add(this.lblRetrv);
             this.Controls.Add(this.btnRld);
             this.Controls.Add(this.btnHideSt);
+            this.Controls.Add(this.txtfilename);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.linkgit);
             this.Controls.Add(this.txtPLend);
@@ -460,7 +419,6 @@
             this.Controls.Add(this.lblPLstart);
             this.Controls.Add(this.chkPlaylst);
             this.Controls.Add(this.chkDefLoc);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btndwnld);
             this.Controls.Add(this.groupBoxFtype);
             this.Controls.Add(this.groupBoxQlty);
@@ -479,8 +437,6 @@
             this.groupBoxQlty.PerformLayout();
             this.groupBoxFtype.ResumeLayout(false);
             this.groupBoxFtype.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,14 +457,9 @@
         private System.Windows.Forms.GroupBox groupBoxFtype;
         private System.Windows.Forms.RadioButton rdbwebm;
         private System.Windows.Forms.RadioButton rdbmp4;
-        private System.Windows.Forms.TextBox txtfilename;
         private System.Windows.Forms.Button btndwnld;
         private System.Windows.Forms.RadioButton rdbmaxqlty;
-        private System.Windows.Forms.Label lblFileSpChar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radCustomFileName;
-        private System.Windows.Forms.RadioButton radYTtitle;
         private System.Windows.Forms.CheckBox chkDefLoc;
         private System.Windows.Forms.RadioButton rdb4k;
         private System.Windows.Forms.CheckBox chkPlaylst;
@@ -522,8 +473,10 @@
         private System.Windows.Forms.Button btnRld;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ProgressBar prgrsbr;
-        private System.Windows.Forms.Label lblRetrv;
         private System.ComponentModel.BackgroundWorker YTtitlebackgroundWorker;
+        private System.Windows.Forms.TextBox txtfilename;
+        private System.Windows.Forms.Label lblRetrv;
+        private System.Windows.Forms.Label lblFileName;
     }
 }
 
