@@ -549,7 +549,7 @@ namespace Youtube_downloader
             }
             else
             {
-                txtfilename.Text = Regex.Replace(urltitlereturn.title, @"[^\w\.@-]", " "); //filter illegal characters form title/filename
+                txtfilename.Text = Regex.Replace(urltitlereturn.title, @"[^\w\&.@-]", " "); //filter illegal characters form title/filename
             }
             
         }
