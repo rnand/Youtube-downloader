@@ -59,8 +59,8 @@ namespace Youtube_downloader
             }
             else if (chkPlaylst.Checked == true)  //refactoring required in the future
             {
-                this.Height = 530; //resize the form        
-                //show the text box
+                this.Height = 510; //resize the form        
+                //show the status text box
                 txtStatus.Visible = true;
                 
                 //show the 'hide status' button
@@ -203,7 +203,7 @@ namespace Youtube_downloader
                 //}
                 //else
                 //{
-                this.Height = 530; //resize the form
+                this.Height = 510; //resize the form
                 //show the text box
                 txtStatus.Visible = true;
 
@@ -386,7 +386,7 @@ namespace Youtube_downloader
                 output = Environment.NewLine + e.Data; //add a 'new line' to the status data from the process
                 txtStatus.AppendText(output); //append the status data to the textbox
 
-                foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the percentage data in the output
+                foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the 'percentage data' in the output
                 {
 
                     //prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
@@ -467,13 +467,13 @@ namespace Youtube_downloader
                 txtStatus.Visible = false;
                 btnHideSt.Text = "Show Status";
             }
-            if (this.Height == 470) //resize the form
+            if (this.Height == 450) //resize the form
             {
-                this.Height = 530;
+                this.Height = 510;
             }
             else
             {
-                this.Height = 470;
+                this.Height = 450;
             }
         }
 
@@ -556,7 +556,7 @@ namespace Youtube_downloader
 
     }
 
-    class URLData
+    class URLData //this is for transferring values to and from the UI thread and BackgroundWorker thread
     {
         public string URL;
         public string title;

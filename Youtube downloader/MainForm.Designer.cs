@@ -243,7 +243,7 @@
             // 
             // btndwnld
             // 
-            this.btndwnld.Location = new System.Drawing.Point(317, 390);
+            this.btndwnld.Location = new System.Drawing.Point(317, 378);
             this.btndwnld.Name = "btndwnld";
             this.btndwnld.Size = new System.Drawing.Size(95, 29);
             this.btndwnld.TabIndex = 17;
@@ -325,7 +325,7 @@
             // 
             // txtStatus
             // 
-            this.txtStatus.Location = new System.Drawing.Point(12, 443);
+            this.txtStatus.Location = new System.Drawing.Point(12, 421);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -336,7 +336,7 @@
             // 
             // btnHideSt
             // 
-            this.btnHideSt.Location = new System.Drawing.Point(611, 397);
+            this.btnHideSt.Location = new System.Drawing.Point(603, 381);
             this.btnHideSt.Name = "btnHideSt";
             this.btnHideSt.Size = new System.Drawing.Size(106, 22);
             this.btnHideSt.TabIndex = 25;
@@ -361,10 +361,10 @@
             // 
             // prgrsbr
             // 
-            this.prgrsbr.Location = new System.Drawing.Point(16, 363);
+            this.prgrsbr.Location = new System.Drawing.Point(16, 357);
             this.prgrsbr.Maximum = 1000;
             this.prgrsbr.Name = "prgrsbr";
-            this.prgrsbr.Size = new System.Drawing.Size(697, 15);
+            this.prgrsbr.Size = new System.Drawing.Size(693, 13);
             this.prgrsbr.TabIndex = 27;
             this.prgrsbr.Visible = false;
             // 
@@ -394,9 +394,10 @@
             // lblFileName
             // 
             this.lblFileName.AutoSize = true;
-            this.lblFileName.Location = new System.Drawing.Point(77, 164);
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.Location = new System.Drawing.Point(56, 161);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(57, 13);
+            this.lblFileName.Size = new System.Drawing.Size(79, 18);
             this.lblFileName.TabIndex = 12;
             this.lblFileName.Text = "File Name:";
             // 
@@ -404,7 +405,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 442);
+            this.ClientSize = new System.Drawing.Size(729, 422);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.prgrsbr);
             this.Controls.Add(this.lblRetrv);
