@@ -26,6 +26,8 @@ namespace Youtube_downloader
         }
         private string output;
         private Process exeProcess = new Process();
+        private bool userCancel = false;
+        //int _processID;
         private void Form1_Load(object sender, EventArgs e)
         {
             //radYTtitle.Checked = true;
@@ -51,6 +53,7 @@ namespace Youtube_downloader
 
         private void btndwnld_Click(object sender, EventArgs e)
         {
+            
             prgrsbr.Value = 0;//reset the progress bar
             txtStatus.Clear();//clear the status box
             if (txtURL.Text == "" ||  txtdir.Text == "")
@@ -59,6 +62,7 @@ namespace Youtube_downloader
             }
             else if (chkPlaylst.Checked == true)  //refactoring required in the future
             {
+                btnCancel.Visible = true;
                 this.Height = 510; //resize the form        
                 //show the status text box
                 txtStatus.Visible = true;
@@ -168,6 +172,7 @@ namespace Youtube_downloader
                    
                     // Start the process with the info we specified.
                     exeProcess.Start();
+                    //_processID = exeProcess.Id;
                     exeProcess.BeginOutputReadLine(); //need to call this method to begin the event handling and generation from the process being run
                     exeProcess.BeginErrorReadLine();
                     //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
@@ -204,6 +209,7 @@ namespace Youtube_downloader
                 //else
                 //{
                 this.Height = 510; //resize the form
+                btnCancel.Visible = true;
                 //show the text box
                 txtStatus.Visible = true;
 
@@ -311,6 +317,7 @@ namespace Youtube_downloader
 
                     // Start the process with the info we specified.
                     exeProcess.Start();
+                    //_processID = exeProcess.Id;
                     exeProcess.BeginOutputReadLine();
                     exeProcess.BeginErrorReadLine();
                     //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
@@ -332,9 +339,9 @@ namespace Youtube_downloader
                         
 
                 }
-                catch
+                catch //(Exception mainExcep)
                 {
-                    //MessageBox.Show("ERROR");
+                    //MessageBox.Show(mainExcep.ToString(),"ERROR");
                 }
                 //}
             }
@@ -344,7 +351,7 @@ namespace Youtube_downloader
         {
             exeProcess.CancelOutputRead();
             //exeProcess.CancelErrorRead();
-            if (exeProcess.ExitCode == 0)
+            if (exeProcess.ExitCode == 0 && userCancel==false)
             {
                 prgrsbr.BeginInvoke(new Action(() =>    //need this beacuse of different threads
                 {                                      
@@ -356,6 +363,19 @@ namespace Youtube_downloader
 
                 //hide the progressbar
                 //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
+                prgrsbr.BeginInvoke(new Action(() =>    //All
+                {                                      //of
+                    prgrsbr.Visible = false;          //these
+                }                                    //lines
+                ));                                 //are required to just hide the progress bar!
+            }
+            else if(userCancel==true)
+            {
+                txtStatus.BeginInvoke(new Action(() =>
+                    {
+                        txtStatus.AppendText("Download cancelled.");
+                    }
+                ));
                 prgrsbr.BeginInvoke(new Action(() =>    //All
                 {                                      //of
                     prgrsbr.Visible = false;          //these
@@ -374,6 +394,7 @@ namespace Youtube_downloader
                     }                                //lines
                 ));                                 //are required to just hide the progress bar!
             }
+            userCancel = false;
         }
         void exeProcess_OutDataReceivedHandler(object sender, DataReceivedEventArgs e) //handle output data coming from the command line process being run
         {
@@ -512,7 +533,15 @@ namespace Youtube_downloader
         {
             string id = GetArgs(URL, "v", '?');
             WebClient client = new WebClient();
-            return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
+            try
+            {
+                return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
+            }
+            catch (Exception webExcep)
+            {
+                MessageBox.Show("Unable to retrieve title. Check your network connection.","Title error");
+            }
+            return "";
         }
 
         private string GetArgs(string args, string key, char query)
@@ -551,6 +580,26 @@ namespace Youtube_downloader
             {
                 txtfilename.Text = Regex.Replace(urltitlereturn.title, @"[^\w\&.@-]", " "); //filter illegal characters form title/filename
             }
+            
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (!exeProcess.HasExited)
+            {
+                userCancel = true;
+
+                try
+                {
+                    exeProcess.Kill();
+                }
+                catch (Exception excep)
+                {
+                    MessageBox.Show(excep.ToString());
+                }
+                btnCancel.Visible = false;
+            }
+
             
         }
 

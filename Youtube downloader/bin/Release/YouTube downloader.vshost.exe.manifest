@@ -43,24 +43,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouTube downloader.exe" size="12900352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouTube downloader.exe" size="12902400">
       <assemblyIdentity name="YouTube downloader" version="1.4.3.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>jNp94zy4a7V6sHPSaNTsx/pfvHY=</dsig:DigestValue>
+        <dsig:DigestValue>P+mb0vltl3FpJu6bEMhr1cxV3Uk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="YouTube downloader.exe.config" size="830">
+  <file name="YouTube downloader.exe.config" size="894">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>TcghIv5FpS3HK8GnXepvpooeuL4=</dsig:DigestValue>
+      <dsig:DigestValue>x9Z3rn5BW5+PQ85OhgD0CyvZA3o=</dsig:DigestValue>
     </hash>
   </file>
   <file name="YouTube-icon-dark.ico" size="370070">

@@ -63,6 +63,7 @@
             this.txtfilename = new System.Windows.Forms.TextBox();
             this.lblRetrv = new System.Windows.Forms.Label();
             this.lblFileName = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -401,11 +402,23 @@
             this.lblFileName.TabIndex = 12;
             this.lblFileName.Text = "File Name:";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(302, 379);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(125, 28);
+            this.btnCancel.TabIndex = 28;
+            this.btnCancel.Text = "Cancel download";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 422);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.prgrsbr);
             this.Controls.Add(this.lblRetrv);
@@ -478,6 +491,7 @@
         private System.Windows.Forms.TextBox txtfilename;
         private System.Windows.Forms.Label lblRetrv;
         private System.Windows.Forms.Label lblFileName;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
