@@ -393,6 +393,12 @@ namespace Youtube_downloader
                         prgrsbr.Visible = false;      //these
                     }                                //lines
                 ));                                 //are required to just hide the progress bar!
+
+                btnCancel.BeginInvoke(new Action(() =>
+                    {
+                        btnCancel.Visible = false;
+                    }
+                ));
             }
             userCancel = false;
         }

@@ -389,7 +389,7 @@
             this.lblRetrv.Name = "lblRetrv";
             this.lblRetrv.Size = new System.Drawing.Size(83, 13);
             this.lblRetrv.TabIndex = 11;
-            this.lblRetrv.Text = "Retreiving title...";
+            this.lblRetrv.Text = "Retrieving title...";
             this.lblRetrv.Visible = false;
             // 
             // lblFileName

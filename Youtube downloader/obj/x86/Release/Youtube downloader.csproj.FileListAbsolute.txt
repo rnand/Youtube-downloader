@@ -28,3 +28,4 @@ H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloade
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\YouTube downloader.TrustInfo.xml
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\YouTube downloader.exe.manifest
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\YouTube downloader.application
+H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\Youtube downloader.csprojResolveAssemblyReference.cache
