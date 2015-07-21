@@ -27,6 +27,9 @@ namespace Youtube_downloader
         private string output;
         private Process exeProcess = new Process();
         private bool userCancel = false;
+        private string ftype;
+        private string fdir;
+        private string fname;
         //int _processID;
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -77,10 +80,10 @@ namespace Youtube_downloader
                 
                 string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                 File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
-                string ftype; //the file type
+                
                 string PLurl = txtURL.Text; //playlist url
-                string fdir = txtdir.Text; //file dir
-                string fname = txtfilename.Text; //the file name
+                fdir = txtdir.Text; //file dir
+                fname = txtfilename.Text; //the file name
 
                 string qlty = "best"; //default quality
                 ////////////////////////////////////////////////////////////////
@@ -224,10 +227,10 @@ namespace Youtube_downloader
                 //string yURL = "http://www.youtube.com/watch?v=" + vID;//generate the proper URL
                 string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
                 File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl); //FLAG FLAG FLAG - check this section later for another way to implemeent this
-                string ftype; //the file type
+                //string ftype; //the file type
 
-                string fdir = txtdir.Text;
-                string fname = txtfilename.Text; //the file name
+                fdir = txtdir.Text;
+                fname = txtfilename.Text; //the file name
 
                 string qlty = "best"; //default quality
                 ////////////////////////////////////////////////////////////////
@@ -381,10 +384,24 @@ namespace Youtube_downloader
                     prgrsbr.Visible = false;          //these
                 }                                    //lines
                 ));                                 //are required to just hide the progress bar!
+                DialogResult result = MessageBox.Show("Do you want to delete the part downloaded so far?", "Delete file conformation", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    
+                    if (File.Exists(Path.Combine(fdir, fname + "." + ftype + ".part")))
+                    {
+                        File.Delete(Path.Combine(fdir, fname+ "."+ ftype+ ".part")); 
+                        txtStatus.BeginInvoke(new Action(() =>
+                        {
+                            txtStatus.AppendText(Environment.NewLine + "File deleted:" + Path.Combine(fdir, fname + "." + ftype + ".part"));
+                        }
+                ));
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Download Failed.\nHowever, the part downloaded so far has been saved so that you can resume it later; just use the same URL and it will resume the download.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 //hide the progressbar
                 //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
