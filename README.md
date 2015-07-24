@@ -2,7 +2,7 @@ This is a GUI version of youtube-dl found here:https://rg3.github.io/youtube-dl/
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/12506856/8772821/dbb9f46e-2eec-11e5-8379-09067a0911cf.PNG)
 
-This software is the result of my realization that most people (including me) are too stupid or just lazy to use the command-line tool ['youtube-dl'](https://rg3.github.io/youtube-dl/). So I decided to build a GUI for it with only the most bare-bone features (youtube-dl has a ton of features which are not available in my version - maybe they will soon be available :p).
+This software is the result of my realization that most people (including me) are just too lazy to use the command-line tool ['youtube-dl'](https://rg3.github.io/youtube-dl/). So I decided to build a GUI for it with only the most bare-bone features (youtube-dl has a ton of features which are not available in my version - maybe they will soon be available :p).
 
 You can download videos from other video sharing sites as well. A huge set of sites are supported. To see the full list of supported sites [go here.](https://rg3.github.io/youtube-dl/supportedsites.html) The advanced options like quality etc. are only applicable to youtube at the moment; soon they will apply to other sites as well.
 
