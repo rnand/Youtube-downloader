@@ -12,6 +12,8 @@ using System.IO;
 using System.Web;
 using System.Net;
 using System.Text.RegularExpressions;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Taskbar;
 using YouTube_downloader.Properties;
 
 
@@ -361,9 +363,10 @@ namespace Youtube_downloader
                     prgrsbr.Value = 1000;         //yes this is cheating, but who cares if it works lol!
                     
                 }                                  
-                ));   
+                ));
+                
                 MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
                 //hide the progressbar
                 //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
                 prgrsbr.BeginInvoke(new Action(() =>    //All
@@ -384,6 +387,7 @@ namespace Youtube_downloader
                     prgrsbr.Visible = false;          //these
                 }                                    //lines
                 ));                                 //are required to just hide the progress bar!
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Paused);
                 DialogResult result = MessageBox.Show("Do you want to delete the part downloaded so far?", "Delete file conformation", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
@@ -398,9 +402,11 @@ namespace Youtube_downloader
                 ));
                     }
                 }
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
             }
             else
             {
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
                 MessageBox.Show("Download Failed.\nHowever, the part downloaded so far has been saved so that you can resume it later; just use the same URL and it will resume the download.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 //hide the progressbar
@@ -416,6 +422,7 @@ namespace Youtube_downloader
                         btnCancel.Visible = false;
                     }
                 ));
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
             }
             userCancel = false;
         }
@@ -429,12 +436,13 @@ namespace Youtube_downloader
             {
                 output = Environment.NewLine + e.Data; //add a 'new line' to the status data from the process
                 txtStatus.AppendText(output); //append the status data to the textbox
-
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the 'percentage data' in the output
                 {
 
                     //prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
                     prgrsbr.Value = (int)(Convert.ToDecimal(match.Value)*10);//now this, is more like it. we need to convert the decimal value to int
+                    TaskbarManager.Instance.SetProgressValue(prgrsbr.Value, 1000);
                 }
             }
         }
