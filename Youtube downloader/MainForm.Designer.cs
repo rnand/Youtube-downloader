@@ -326,13 +326,13 @@
             // 
             // txtStatus
             // 
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStatus.Location = new System.Drawing.Point(12, 421);
-            this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatus.Size = new System.Drawing.Size(705, 56);
+            this.txtStatus.Size = new System.Drawing.Size(705, 20);
             this.txtStatus.TabIndex = 24;
+            this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStatus.Visible = false;
             // 
             // btnHideSt

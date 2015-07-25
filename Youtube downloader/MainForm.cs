@@ -68,7 +68,7 @@ namespace Youtube_downloader
             else if (chkPlaylst.Checked == true)  //refactoring required in the future
             {
                 btnCancel.Visible = true;
-                this.Height = 510; //resize the form        
+                this.Height = 490; //resize the form        
                 //show the status text box
                 txtStatus.Visible = true;
                 
@@ -213,7 +213,7 @@ namespace Youtube_downloader
                 //}
                 //else
                 //{
-                this.Height = 510; //resize the form
+                this.Height = 490; //resize the form
                 btnCancel.Visible = true;
                 //show the text box
                 txtStatus.Visible = true;
@@ -435,7 +435,7 @@ namespace Youtube_downloader
             else
             {
                 output = Environment.NewLine + e.Data; //add a 'new line' to the status data from the process
-                txtStatus.AppendText(output); //append the status data to the textbox
+                txtStatus.Text=output; //append the status data to the textbox
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the 'percentage data' in the output
                 {
@@ -521,7 +521,7 @@ namespace Youtube_downloader
             }
             if (this.Height == 450) //resize the form
             {
-                this.Height = 510;
+                this.Height = 490;
             }
             else
             {
