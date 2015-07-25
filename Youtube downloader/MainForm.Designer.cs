@@ -445,7 +445,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "YouTube Downloader 1.4.5";
+            this.Text = "YouTube Downloader 1.4.6";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();
