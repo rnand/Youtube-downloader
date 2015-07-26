@@ -551,26 +551,47 @@ namespace Youtube_downloader
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            Regex isYoutube = new Regex("youtube|youtu.be");
-            Match checkUrl = isYoutube.Match(txtURL.Text);
+            Regex isSupported = new Regex("youtube|youtu.be|vimeo");
+            Match checkUrl = isSupported.Match(txtURL.Text);
             if (checkUrl.Success)
             {
-                var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text };
+                var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text, site=checkUrl.Value};
                 YTtitlebackgroundWorker.RunWorkerAsync(urlData);
 
             }
         }
-        private string GetTitle(string URL)
+        private string GetTitle(string URL,string site)
         {
-            string id = GetArgs(URL, "v", '?');
             WebClient client = new WebClient();
-            try
+            if (site == "youtube" || site == "youtu.be")
             {
-                return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
+                string id = GetArgs(URL, "v", '?');
+
+                try
+                {
+                    return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
+                }
+                catch (Exception webExcep)
+                {
+                    MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
+                }
+                
+
             }
-            catch (Exception webExcep)
+            else if (site == "vimeo")
             {
-                MessageBox.Show("Unable to retrieve title. Check your network connection.","Title error");
+                try
+                {
+                    string content=client.DownloadString(URL);
+                    var pattern = @"<meta.*property=""og:title"".*content=""(.*)"".*>"; //pattern to match
+                    Match patternMatch = Regex.Match(content, pattern);
+                    var matchedPart = patternMatch.Groups[1];
+                    return matchedPart.Value;
+                }
+                catch (Exception webExcep)
+                {
+                    MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
+                }
             }
             return "";
         }
@@ -595,7 +616,7 @@ namespace Youtube_downloader
             {
                 lblRetrv.Visible = true;
             });
-            urldata.title = GetTitle(urldata.URL);
+            urldata.title = GetTitle(urldata.URL,urldata.site);
             e.Result = urldata;
         }
 
@@ -645,6 +666,7 @@ namespace Youtube_downloader
     {
         public string URL;
         public string title;
+        public string site;
     }
    
 
