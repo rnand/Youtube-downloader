@@ -609,7 +609,7 @@ namespace Youtube_downloader
             }
             else
             {
-                txtfilename.Text = Regex.Replace(urltitlereturn.title, @"[^\w\&.@-]", " "); //filter illegal characters form title/filename
+                txtfilename.Text = sanitizeTitle(urltitlereturn.title); //filter illegal characters form title/filename
             }
             
         }
@@ -634,8 +634,13 @@ namespace Youtube_downloader
             
         }
 
+        private string sanitizeTitle(string str)
+        {
+            string saneTitle = Regex.Replace(str, @"[^\w\&.@-]", " ");
+            return saneTitle;
+        }
     }
-
+    
     class URLData //this is for transferring values to and from the UI thread and BackgroundWorker thread
     {
         public string URL;
