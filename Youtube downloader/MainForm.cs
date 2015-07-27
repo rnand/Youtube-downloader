@@ -551,7 +551,7 @@ namespace Youtube_downloader
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            Regex isSupported = new Regex("youtube|youtu.be|vimeo");
+            Regex isSupported = new Regex("youtube|youtu.be|vimeo|dailymotion");
             Match checkUrl = isSupported.Match(txtURL.Text);
             if (checkUrl.Success)
             {
@@ -571,14 +571,14 @@ namespace Youtube_downloader
                 {
                     return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
                 }
-                catch (Exception webExcep)
+                catch (Exception)
                 {
                     MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
                 }
                 
 
             }
-            else if (site == "vimeo")
+            else if (site == "vimeo" || site == "dailymotion")
             {
                 try
                 {
@@ -588,7 +588,7 @@ namespace Youtube_downloader
                     var matchedPart = patternMatch.Groups[1];
                     return matchedPart.Value;
                 }
-                catch (Exception webExcep)
+                catch (Exception)
                 {
                     MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
                 }
@@ -615,6 +615,10 @@ namespace Youtube_downloader
             lblRetrv.Invoke((MethodInvoker)delegate
             {
                 lblRetrv.Visible = true;
+            });
+            txtfilename.Invoke((MethodInvoker)delegate
+            {
+                txtfilename.Clear();
             });
             urldata.title = GetTitle(urldata.URL,urldata.site);
             e.Result = urldata;
