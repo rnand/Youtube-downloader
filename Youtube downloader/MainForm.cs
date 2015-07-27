@@ -562,36 +562,39 @@ namespace Youtube_downloader
         }
         private string GetTitle(string URL,string site)
         {
-            WebClient client = new WebClient();
-            if (site == "youtube" || site == "youtu.be")
+            using (WebClient client = new WebClient())
             {
-                string id = GetArgs(URL, "v", '?');
+                if (site == "youtube" || site == "youtu.be")
+                {
+                    string id = GetArgs(URL, "v", '?');
 
-                try
-                {
-                    return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
-                }
-                
+                    try
+                    {
+                        return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
+                    }
 
-            }
-            else if (site == "vimeo" || site == "dailymotion")
-            {
-                try
-                {
-                    string content=client.DownloadString(URL);
-                    var pattern = @"<meta.*property=""og:title"".*content=""(.*)"".*>"; //pattern to match
-                    Match patternMatch = Regex.Match(content, pattern);
-                    var matchedPart = patternMatch.Groups[1];
-                    return matchedPart.Value;
+
                 }
-                catch (Exception)
+                else if (site == "vimeo" || site == "dailymotion")
                 {
-                    MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
+                    try
+                    {
+                        string content = client.DownloadString(URL);
+                        var pattern = @"<meta.*property=""og:title"".*content=""(.*)"".*>"; //pattern to match
+                        Match patternMatch = Regex.Match(content, pattern);
+                        var matchedPart = patternMatch.Groups[1];
+                        return matchedPart.Value;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
+                    }
                 }
+            
             }
             return "";
         }
@@ -661,7 +664,7 @@ namespace Youtube_downloader
 
         private string sanitizeTitle(string str)
         {
-            string saneTitle = Regex.Replace(str, @"[^\w\&.@-]", " ");
+            string saneTitle = Regex.Replace(str, @"[^\w\'&.@-]", " ");
             return saneTitle;
         }
     }
