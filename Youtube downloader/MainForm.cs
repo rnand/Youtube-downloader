@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Web;
 using System.Net;
 using System.Text.RegularExpressions;
-using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using YouTube_downloader.Properties;
 
@@ -330,19 +325,7 @@ namespace Youtube_downloader
                     {
                         Application.DoEvents(); // This keeps the form responsive by processing events
                     }
-                    //if (exeProcess.HasExited)
-                    //{
-                    //    if (exeProcess.ExitCode == 0)
-                    //    {
-                    //        MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    }
-                    //    else
-                    //    {
-                    //        MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    }
-                    //}
-                        
-
+                                       
                 }
                 catch //(Exception mainExcep)
                 {

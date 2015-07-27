@@ -14,7 +14,6 @@ h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloa
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube downloader.pdb
 h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\youtube-dl.exe
 H:\My Documents\Visual Studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\YouTube downloader.exe.config
-H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Release\youtube-dl.exe
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Release\YouTube downloader.exe.config
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Release\YouTube downloader.exe.manifest
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Release\YouTube downloader.application
