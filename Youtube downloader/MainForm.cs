@@ -24,6 +24,7 @@ namespace Youtube_downloader
         private string output;
         private Process exeProcess = new Process();
         private bool userCancel = false;
+        private bool userPause = false;
         private string ftype;
         private string fdir;
         private string fname;
@@ -63,6 +64,7 @@ namespace Youtube_downloader
             else if (chkPlaylst.Checked == true)  //refactoring required in the future
             {
                 btnCancel.Visible = true;
+                btnPause.Visible = true;
                 this.Height = 490; //resize the form        
                 //show the status text box
                 txtStatus.Visible = true;
@@ -210,6 +212,7 @@ namespace Youtube_downloader
                 //{
                 this.Height = 490; //resize the form
                 btnCancel.Visible = true;
+                btnPause.Visible = true;
                 //show the text box
                 txtStatus.Visible = true;
 
@@ -341,12 +344,12 @@ namespace Youtube_downloader
             //exeProcess.CancelErrorRead();
             if (exeProcess.ExitCode == 0 && userCancel==false)
             {
-                prgrsbr.BeginInvoke(new Action(() =>    //need this beacuse of different threads
-                {                                      
-                    prgrsbr.Value = 1000;         //yes this is cheating, but who cares if it works lol!
+                //prgrsbr.BeginInvoke(new Action(() =>    //need this beacuse of different threads
+                //{                                      
+                //    prgrsbr.Value = 1000;         //yes this is cheating, but who cares if it works lol!
                     
-                }                                  
-                ));
+                //}                                  
+                //));
                 
                 MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
@@ -386,6 +389,15 @@ namespace Youtube_downloader
                     }
                 }
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+            }
+            else if (userPause == true)
+            {
+                txtStatus.Invoke((MethodInvoker)delegate
+                {
+                    txtStatus.Text="Download paused.";
+                    
+                });
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Paused);
             }
             else
             {
@@ -640,6 +652,7 @@ namespace Youtube_downloader
                     MessageBox.Show(excep.ToString());
                 }
                 btnCancel.Visible = false;
+                btnPause.Visible = false;
             }
 
             
@@ -649,6 +662,37 @@ namespace Youtube_downloader
         {
             string saneTitle = Regex.Replace(str, @"[^\w\'&.@-]", " ");
             return saneTitle;
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            if (!exeProcess.HasExited && btnPause.Text =="Pause")
+            {
+                userPause = true;
+
+                try
+                {
+                    exeProcess.Kill();
+                }
+                catch (Exception excep)
+                {
+                    MessageBox.Show(excep.ToString());
+                }
+                btnPause.Text = "Resume";
+            }
+            else if (btnPause.Text == "Resume")
+            {
+                userPause = false;
+                try
+                {
+                    btndwnld_Click(sender, e);
+                }
+                catch (Exception excep)
+                {
+                    MessageBox.Show(excep.ToString());
+                }
+                btnPause.Text = "Pause";
+            }
         }
     }
     

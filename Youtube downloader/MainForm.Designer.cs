@@ -64,6 +64,7 @@
             this.lblRetrv = new System.Windows.Forms.Label();
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -337,9 +338,9 @@
             // 
             // btnHideSt
             // 
-            this.btnHideSt.Location = new System.Drawing.Point(603, 381);
+            this.btnHideSt.Location = new System.Drawing.Point(461, 379);
             this.btnHideSt.Name = "btnHideSt";
-            this.btnHideSt.Size = new System.Drawing.Size(106, 22);
+            this.btnHideSt.Size = new System.Drawing.Size(123, 28);
             this.btnHideSt.TabIndex = 25;
             this.btnHideSt.Text = "Hide Status";
             this.toolTip1.SetToolTip(this.btnHideSt, "Display the status of download.");
@@ -404,20 +405,32 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(302, 379);
+            this.btnCancel.Location = new System.Drawing.Point(303, 379);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(125, 28);
+            this.btnCancel.Size = new System.Drawing.Size(123, 28);
             this.btnCancel.TabIndex = 28;
             this.btnCancel.Text = "Cancel download";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(148, 379);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(123, 28);
+            this.btnPause.TabIndex = 29;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Visible = false;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 422);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.prgrsbr);
@@ -445,7 +458,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "YouTube Downloader 1.4.6";
+            this.Text = "YouTube Downloader 1.4.7";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();
@@ -492,6 +505,7 @@
         private System.Windows.Forms.Label lblRetrv;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnPause;
     }
 }
 
