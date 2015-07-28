@@ -546,11 +546,11 @@ namespace Youtube_downloader
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            Regex isSupported = new Regex("youtube|youtu.be|vimeo|dailymotion");
+            Regex isSupported = new Regex("youtube|youtu.be|vimeo|dailymotion"); //the supported sites
             Match checkUrl = isSupported.Match(txtURL.Text);
             if (checkUrl.Success)
             {
-                var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text, site=checkUrl.Value};
+                var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text, site=checkUrl.Value}; //this object is used to send info to the backgroundworker thread
                 YTtitlebackgroundWorker.RunWorkerAsync(urlData);
 
             }
@@ -574,7 +574,7 @@ namespace Youtube_downloader
 
 
                 }
-                else if (site == "vimeo" || site == "dailymotion")
+                else if (site == "vimeo" || site == "dailymotion") //both these sites has the same logic
                 {
                     try
                     {
@@ -660,7 +660,7 @@ namespace Youtube_downloader
 
         private string sanitizeTitle(string str)
         {
-            string saneTitle = Regex.Replace(str, @"[^\w\'&.@-]", " ");
+            string saneTitle = Regex.Replace(str, @"[^\w\'&.@-]", " "); //allow only words, letters, single quote, ampersand, period, at symbol, and a dash
             return saneTitle;
         }
 
@@ -672,7 +672,7 @@ namespace Youtube_downloader
 
                 try
                 {
-                    exeProcess.Kill();
+                    exeProcess.Kill(); //we kill the process here instead of suspending the thread because this is more efficient and easier
                 }
                 catch (Exception excep)
                 {
