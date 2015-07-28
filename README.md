@@ -7,7 +7,7 @@ This software is the result of my realization that most people (including me) ar
 You can download videos from other video sharing sites as well. A huge set of sites are supported. To see the full list of supported sites [go here.](https://rg3.github.io/youtube-dl/supportedsites.html) The advanced options like quality etc. are only applicable to youtube at the moment; soon they will apply to other sites as well.
 
 Here it is in action:
-![screenshot](https://cloud.githubusercontent.com/assets/12506856/8890321/edfb0cd0-331a-11e5-92b9-a4590e93d85b.PNG)
+![screenshot](https://cloud.githubusercontent.com/assets/12506856/8923816/6b50f2ea-3513-11e5-9c7d-8e3f31a1f858.PNG)
 
 The ability to queue videos and the ability to download more than one video at a time will be coming soon. In the mean time, you can add all the videos that you want to a youtube playlist and then download them. Another feature that I wish to add in the future releases is the ability to schedule downloads(single videos and queues). Ability to download mp3 audio also will be implemented soon.
 
