@@ -19,7 +19,7 @@ You also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.org/downlo
 
 **USAGE**
 
-1. Copy youtube video url to clipboard
+1. Copy youtube/vimeo/dailymotion/any-other-supported-site video url to clipboard
 
 2. Open YouTube Downloader.exe
 
