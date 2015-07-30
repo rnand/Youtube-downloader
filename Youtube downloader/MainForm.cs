@@ -546,7 +546,7 @@ namespace Youtube_downloader
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            Regex isSupported = new Regex("youtube|youtu.be|vimeo|dailymotion|apple"); //the supported sites
+            Regex isSupported = new Regex("youtube|youtu.be|vimeo|dailymotion|apple|bbc"); //the supported sites
             Match checkUrl = isSupported.Match(txtURL.Text);
             if (checkUrl.Success)
             {
@@ -574,7 +574,7 @@ namespace Youtube_downloader
 
 
                 }
-                else if (site == "vimeo" || site == "dailymotion" || site=="apple") //both these sites has the same logic
+                else// if (site == "vimeo" || site == "dailymotion" || site=="apple") //these sites have the same logic
                 {
                     try
                     {
