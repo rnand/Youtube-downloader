@@ -15,7 +15,6 @@ h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloa
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\YouTube downloader.exe.config
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\YouTube downloader.exe
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\YouTube downloader.pdb
-H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\youtube-dl.exe
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\YouTube downloader.exe.manifest
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\YouTube downloader.application
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\YouTube downloader.exe
@@ -27,3 +26,7 @@ H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloade
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\YouTube downloader.application
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\Youtube_downloader.MainForm.resources
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Debug\Youtube downloader.csprojResolveAssemblyReference.cache
+H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\Microsoft.WindowsAPICodePack.dll
+H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\Microsoft.WindowsAPICodePack.xml
+H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

@@ -546,65 +546,38 @@ namespace Youtube_downloader
 
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
-            Regex isSupported = new Regex("youtube|youtu.be|vimeo|dailymotion|apple|bbc"); //the supported sites
-            Match checkUrl = isSupported.Match(txtURL.Text);
-            if (checkUrl.Success)
+            var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text }; //this object is used to send info to the backgroundworker thread
+            if (!YTtitlebackgroundWorker.IsBusy)
             {
-                var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text, site=checkUrl.Value}; //this object is used to send info to the backgroundworker thread
                 YTtitlebackgroundWorker.RunWorkerAsync(urlData);
-
+            }
+            else
+            {
+                YTtitlebackgroundWorker.CancelAsync();
+                YTtitlebackgroundWorker.RunWorkerAsync(urlData);
             }
         }
-        private string GetTitle(string URL,string site)
+
+        private string GetTitle(string URL)//string site
         {
             using (WebClient client = new WebClient())
             {
-                if (site == "youtube" || site == "youtu.be")
+                try
                 {
-                    string id = GetArgs(URL, "v", '?');
-
-                    try
-                    {
-                        return GetArgs(client.DownloadString("http://youtube.com/get_video_info?video_id=" + id), "title", '&');
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
-                    }
-
-
+                    string content = client.DownloadString(URL);
+                    var pattern = @"<meta.*property=""og:title"".*content=""(.*)"".*>"; //pattern to match
+                    Match patternMatch = Regex.Match(content, pattern);
+                    var matchedPart = patternMatch.Groups[1];
+                    return matchedPart.Value;
                 }
-                else// if (site == "vimeo" || site == "dailymotion" || site=="apple") //these sites have the same logic
+                catch (Exception)
                 {
-                    try
-                    {
-                        string content = client.DownloadString(URL);
-                        var pattern = @"<meta.*property=""og:title"".*content=""(.*)"".*>"; //pattern to match
-                        Match patternMatch = Regex.Match(content, pattern);
-                        var matchedPart = patternMatch.Groups[1];
-                        return matchedPart.Value;
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
-                    }
+                    MessageBox.Show("Unable to retrieve title. Check your network connection.", "Title error");
                 }
+                
             
             }
             return "";
-        }
-
-        private string GetArgs(string args, string key, char query)
-        {
-            int iqs = args.IndexOf(query);
-            string querystring = null;
-            if (iqs != -1)
-            {
-                querystring = (iqs < args.Length - 1) ? args.Substring(iqs + 1) : String.Empty;
-                NameValueCollection nvcArgs = HttpUtility.ParseQueryString(querystring);
-                return nvcArgs[key];
-            }
-            return String.Empty;
         }
 
         private void YTtitlebackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -618,7 +591,7 @@ namespace Youtube_downloader
             {
                 txtfilename.Clear();
             });
-            urldata.title = GetTitle(urldata.URL,urldata.site);
+            urldata.title = GetTitle(urldata.URL);
             e.Result = urldata;
         }
 
@@ -700,7 +673,7 @@ namespace Youtube_downloader
     {
         public string URL;
         public string title;
-        public string site;
+        //public string site;
     }
    
 
