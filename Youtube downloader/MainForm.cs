@@ -402,7 +402,15 @@ namespace Youtube_downloader
             else
             {
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
-                MessageBox.Show("Download Failed.\nHowever, the part downloaded so far has been saved so that you can resume it later; just use the same URL and it will resume the download.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (File.Exists(Path.Combine(fdir, fname + "." + ftype + ".part")))
+                {
+                    MessageBox.Show("Download Failed.\nHowever, the part downloaded so far has been saved so that you can resume it later; just use the same URL and quality and the download will resume.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                
 
                 //hide the progressbar
                 //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
