@@ -609,7 +609,7 @@ namespace Youtube_downloader
             lblRetrv.Visible = false;
             if (urltitlereturn.title == null)
             {
-                txtfilename.Text = "Unknown video";
+                txtfilename.Text = "Unknown video"; //set this if background worker was unable to retrieve the actual title
             }
             else
             {
@@ -666,7 +666,7 @@ namespace Youtube_downloader
                 userPause = false;
                 try
                 {
-                    btndwnld_Click(sender, e);
+                    btndwnld_Click(sender, e); //call the click event of the download button
                 }
                 catch (Exception excep)
                 {
