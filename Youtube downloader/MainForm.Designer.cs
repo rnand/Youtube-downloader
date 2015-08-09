@@ -133,6 +133,7 @@
             this.groupBoxQlty.TabIndex = 8;
             this.groupBoxQlty.TabStop = false;
             this.groupBoxQlty.Text = "Quality (depends on availability)";
+            this.toolTip1.SetToolTip(this.groupBoxQlty, resources.GetString("groupBoxQlty.ToolTip"));
             // 
             // rdb4k
             // 
@@ -361,6 +362,12 @@
             this.btnRld.UseVisualStyleBackColor = true;
             this.btnRld.Click += new System.EventHandler(this.btnRld_Click);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 32767;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.ReshowDelay = 100;
+            // 
             // prgrsbr
             // 
             this.prgrsbr.Location = new System.Drawing.Point(16, 357);
@@ -458,7 +465,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "YouTube Downloader 1.4.7";
+            this.Text = "YouTube Downloader 1.4.8";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();

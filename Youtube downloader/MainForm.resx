@@ -120,6 +120,19 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="groupBoxQlty.ToolTip" xml:space="preserve">
+    <value>YouTube uses a technology called Dynamic Adaptive Streaming over HTTP (DASH),
+also known as MPEG-DASH, to stream the videos. The maximum quality of non-DASH 
+video available is 720p.
+Inorder to download DASH videos, you need the ffmpeg library installed in your system.
+A simple googling will help you install it. DASH video streams are seperated as audio streams
+and video streams. So YouTube Downloader will first download the video, then the audio,
+and then use ffmpeg to merge them into one file. So dont panic if the progress bar reaches 
+completion and starts all over again! Just sit tight and relax!</value>
+  </data>
   <metadata name="YTtitlebackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>114, 17</value>
   </metadata>
