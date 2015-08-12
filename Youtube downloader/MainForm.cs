@@ -344,22 +344,25 @@ namespace Youtube_downloader
             //exeProcess.CancelErrorRead();
             if (exeProcess.ExitCode == 0 && userCancel==false)
             {
-                //prgrsbr.BeginInvoke(new Action(() =>    //need this beacuse of different threads
-                //{                                      
-                //    prgrsbr.Value = 1000;         //yes this is cheating, but who cares if it works lol!
-                    
-                //}                                  
-                //));
-                
+                                
                 MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
                 //hide the progressbar
-                //prgrsbr.Visible = false; //this will not work as this handler is in another thread and progress bar is in ui thread.
                 prgrsbr.BeginInvoke(new Action(() =>    //All
                 {                                      //of
                     prgrsbr.Visible = false;          //these
                 }                                    //lines
                 ));                                 //are required to just hide the progress bar!
+                btnCancel.BeginInvoke(new Action(() =>
+                {
+                    btnCancel.Visible = false;
+                }
+                ));
+                btnPause.Invoke((MethodInvoker)delegate
+                {
+                    btnPause.Visible=false;
+                }
+                );
             }
             else if(userCancel==true)
             {

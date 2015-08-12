@@ -344,7 +344,7 @@
             this.btnHideSt.Size = new System.Drawing.Size(123, 28);
             this.btnHideSt.TabIndex = 25;
             this.btnHideSt.Text = "Hide Status";
-            this.toolTip1.SetToolTip(this.btnHideSt, "Display the status of download.");
+            this.toolTip1.SetToolTip(this.btnHideSt, "Display or hide the status of download.");
             this.btnHideSt.UseVisualStyleBackColor = true;
             this.btnHideSt.Visible = false;
             this.btnHideSt.Click += new System.EventHandler(this.btnHideSt_Click);
@@ -465,7 +465,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "YouTube Downloader 1.4.8";
+            this.Text = "YouTube Downloader 1.4.8.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();
