@@ -29,7 +29,7 @@ namespace Youtube_downloader
         private string fdir;
         private string fname;
         //int _processID;
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             //radYTtitle.Checked = true;
             getClipboardData(); //get the url
@@ -143,14 +143,12 @@ namespace Youtube_downloader
                     //Audio Vorbis @ 128 kbits/s
                 }
 
-                
-                //ProcessStartInfo startInfo = new ProcessStartInfo();
                 exeProcess.StartInfo.RedirectStandardOutput = true;
                 exeProcess.StartInfo.CreateNoWindow = true;
                 exeProcess.StartInfo.UseShellExecute = false;
                 exeProcess.EnableRaisingEvents = true;
                 exeProcess.StartInfo.FileName = ex1;
-                //startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                
                 if (txtPLstart.Text=="" && txtPLend.Text=="")
                 {
                     exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + PLurl + " -f " + qlty;
@@ -170,11 +168,8 @@ namespace Youtube_downloader
                 try
                 {
                     
-                    
-                   
                     // Start the process with the info we specified.
                     exeProcess.Start();
-                    //_processID = exeProcess.Id;
                     exeProcess.BeginOutputReadLine(); //need to call this method to begin the event handling and generation from the process being run
                     exeProcess.BeginErrorReadLine();
                     //exeProcess.WaitForExit();   // calling WaitForExit() will suspend the UI thread. So don't do that.
@@ -182,15 +177,7 @@ namespace Youtube_downloader
                     {
                         Application.DoEvents(); // This keeps the form responsive by processing events
                     }
-                    //if (exeProcess.ExitCode == 0)
-                    //{
-                    //    MessageBox.Show("Download Complete.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Download Failed.", "Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //}
-                    
+                                        
                 }
                 catch
                 {
