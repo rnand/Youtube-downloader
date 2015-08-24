@@ -545,6 +545,7 @@ namespace Youtube_downloader
         private void txtURL_TextChanged(object sender, EventArgs e)
         {
             var urlData = new URLData() { URL = txtURL.Text, title = txtfilename.Text }; //this object is used to send info to the backgroundworker thread
+            YTtitlebackgroundWorker.WorkerSupportsCancellation = true;
             if (!YTtitlebackgroundWorker.IsBusy)
             {
                 YTtitlebackgroundWorker.RunWorkerAsync(urlData);
