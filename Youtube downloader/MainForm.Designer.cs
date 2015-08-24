@@ -65,6 +65,7 @@
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
+            this.rdbmp3 = new System.Windows.Forms.RadioButton();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -213,6 +214,7 @@
             // 
             // groupBoxFtype
             // 
+            this.groupBoxFtype.Controls.Add(this.rdbmp3);
             this.groupBoxFtype.Controls.Add(this.rdbwebm);
             this.groupBoxFtype.Controls.Add(this.rdbmp4);
             this.groupBoxFtype.Location = new System.Drawing.Point(392, 212);
@@ -432,6 +434,17 @@
             this.btnPause.Visible = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
+            // rdbmp3
+            // 
+            this.rdbmp3.AutoSize = true;
+            this.rdbmp3.Location = new System.Drawing.Point(69, 98);
+            this.rdbmp3.Name = "rdbmp3";
+            this.rdbmp3.Size = new System.Drawing.Size(105, 17);
+            this.rdbmp3.TabIndex = 17;
+            this.rdbmp3.TabStop = true;
+            this.rdbmp3.Text = "MP3 (Audio only)";
+            this.rdbmp3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,6 +526,7 @@
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.RadioButton rdbmp3;
     }
 }
 

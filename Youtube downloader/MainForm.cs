@@ -28,7 +28,7 @@ namespace Youtube_downloader
         private string ftype;
         private string fdir;
         private string fname;
-        //int _processID;
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
             //radYTtitle.Checked = true;
@@ -415,6 +415,11 @@ namespace Youtube_downloader
                         btnCancel.Visible = false;
                     }
                 ));
+                btnPause.Invoke((MethodInvoker)delegate
+                {
+                    btnPause.Visible = false;
+                }
+                );
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
             }
             userCancel = false;
@@ -603,7 +608,7 @@ namespace Youtube_downloader
             }
             else
             {
-                txtfilename.Text = sanitizeTitle(urltitlereturn.title); //filter illegal characters form title/filename
+                txtfilename.Text = SanitizeTitle(urltitlereturn.title); //filter illegal characters form title/filename
             }
             
         }
@@ -629,11 +634,72 @@ namespace Youtube_downloader
             
         }
 
-        private string sanitizeTitle(string str)
+        private string SanitizeTitle(string str)
         {
             string saneTitle = Regex.Replace(str, @"[^\w\'&.@-]", " "); //allow only words, letters, single quote, ampersand, period, at symbol, and a dash
             return saneTitle;
         }
+
+        private void download(string qlty,Boolean isPlaylist) 
+        {
+            string ex1 = Path.Combine(Path.GetTempPath(), "youtube-dl.exe");
+            File.WriteAllBytes(ex1, YouTube_downloader.Properties.Resources.youtube_dl);
+        }
+
+        private string SetQuality()
+        {
+            string qlty = "";
+
+            if (rdb4k.Checked && rdbmp4.Checked)
+            {
+                qlty = "266+141"; //266 for mp4 video @ 2160p, H.264, Video bitrate (Mbits/s) : 12.5-13.5 
+                //141 for mp4 audio AAC, Bitrate (kbits/s) : 256
+            }
+            else if (rdbhd1080.Checked && rdbmp4.Checked)
+            {
+                qlty = "137+140"; //137 for mp4 video @ 1080p, H.264, Video bitrate (Mbits/s) : 2.5-3
+                //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+            }
+            else if (rdbhd720.Checked && rdbmp4.Checked)
+            {
+                qlty = "22"; //22 for mp4 video @ 720p, H.264, Video bitrate (Mbits/s) : 2-3
+                //Audio AAC @ 192 kbits/s
+            }
+            else if (rdbsd480.Checked && rdbmp4.Checked)
+            {
+                qlty = "135+140";//135 for mp4 video @ 480p, H.264, Video bitrate (Mbits/s) : 0.5-1
+                //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+            }
+            else if (rdbsd360.Checked && rdbmp4.Checked)
+            {
+                qlty = "18"; //18 for mp4 video @ 360p, H.264, Video bitrate (Mbits/s) : 0.5
+                //Audio AAC @ 96 kbits/s
+            }
+            ////////////////////////////////////////////////////////////////
+            //the following options set quality for webm
+            if (rdbhd1080.Checked && rdbwebm.Checked)
+            {
+                qlty = "248+140"; //248 for webm video @ 1080p, VP9, Video bitrate (Mbits/s) : 1.5
+                //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+            }
+            else if (rdbhd720.Checked && rdbwebm.Checked)
+            {
+                qlty = "247+140";//247 for webm video @ 720p, VP9, Video bitrate (Mbits/s) : 0.7-0.8
+                //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+            }
+            else if (rdbsd480.Checked && rdbwebm.Checked)
+            {
+                qlty = "244+140";//247 for webm video @ 480p, VP9, Video bitrate (Mbits/s) : 0.5
+                //140 for mp4 audio AAC, Bitrate (kbits/s) : 128
+            }
+            else if (rdbsd360.Checked && rdbwebm.Checked)
+            {
+                qlty = "43";  //43 for webm video @ 360p, VP8, Video bitrate (Mbits/s) : 0.5
+                //Audio Vorbis @ 128 kbits/s
+            }
+            return qlty;
+        }
+
 
         private void btnPause_Click(object sender, EventArgs e)
         {
