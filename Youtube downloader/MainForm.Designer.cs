@@ -44,6 +44,7 @@
             this.rdbhd720 = new System.Windows.Forms.RadioButton();
             this.rdbhd1080 = new System.Windows.Forms.RadioButton();
             this.groupBoxFtype = new System.Windows.Forms.GroupBox();
+            this.rdbmp3 = new System.Windows.Forms.RadioButton();
             this.rdbwebm = new System.Windows.Forms.RadioButton();
             this.rdbmp4 = new System.Windows.Forms.RadioButton();
             this.btndwnld = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
-            this.rdbmp3 = new System.Windows.Forms.RadioButton();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -223,6 +223,17 @@
             this.groupBoxFtype.TabIndex = 15;
             this.groupBoxFtype.TabStop = false;
             this.groupBoxFtype.Text = "File type";
+            // 
+            // rdbmp3
+            // 
+            this.rdbmp3.AutoSize = true;
+            this.rdbmp3.Location = new System.Drawing.Point(69, 98);
+            this.rdbmp3.Name = "rdbmp3";
+            this.rdbmp3.Size = new System.Drawing.Size(105, 17);
+            this.rdbmp3.TabIndex = 17;
+            this.rdbmp3.TabStop = true;
+            this.rdbmp3.Text = "MP3 (Audio only)";
+            this.rdbmp3.UseVisualStyleBackColor = true;
             // 
             // rdbwebm
             // 
@@ -434,17 +445,6 @@
             this.btnPause.Visible = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
-            // rdbmp3
-            // 
-            this.rdbmp3.AutoSize = true;
-            this.rdbmp3.Location = new System.Drawing.Point(69, 98);
-            this.rdbmp3.Name = "rdbmp3";
-            this.rdbmp3.Size = new System.Drawing.Size(105, 17);
-            this.rdbmp3.TabIndex = 17;
-            this.rdbmp3.TabStop = true;
-            this.rdbmp3.Text = "MP3 (Audio only)";
-            this.rdbmp3.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,7 +478,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "YouTube Downloader 1.4.8.1";
+            this.Text = "YouTube Downloader 1.4.9";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();
