@@ -1,19 +1,3 @@
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\YouTube downloader.exe.manifest
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\YouTube downloader.application
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\YouTube downloader.exe
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\YouTube downloader.pdb
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\ResolveAssemblyReference.cache
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\Youtuble_downloader.Form1.resources
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube_downloader.Properties.Resources.resources
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\GenerateResource.read.1.tlog
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\GenerateResource.write.1.tlog
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube downloader.TrustInfo.xml
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube downloader.exe.manifest
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube downloader.application
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube downloader.exe
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\obj\x86\Release\YouTube downloader.pdb
-h:\my documents\visual studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\youtube-dl.exe
-H:\My Documents\Visual Studio 2010\Projects\Youtuble downloader\Youtuble downloader\bin\Release\YouTube downloader.exe.config
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\Youtube_downloader.MainForm.resources
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\YouTube_downloader.Properties.Resources.resources
 H:\My Documents\Visual Studio 2010\Projects\Youtube downloader\Youtube downloader\obj\x86\Release\Youtube downloader.csproj.GenerateResource.Cache

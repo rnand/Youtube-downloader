@@ -457,7 +457,7 @@ namespace Youtube_downloader
             }
             else if (dType == "aud")
             {
-                exeProcess.StartInfo.Arguments = "--extract-audio --audio-format mp3 --audio-quality 0"+ " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + url  ; //audio quality, insert a value between 0 (better) and 9 (worse) for VBR
+                exeProcess.StartInfo.Arguments = "--extract-audio" + " --audio-format mp3" + "  --audio-quality 0" + " -o " + "\"" + fdir + "\\" + fname + "." + "m4a" + "\"" + " " + url; //audio quality, insert a value between 0 (better) and 9 (worse) for VBR
                                                                                                                                                               //audio format: "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav"; "best" by default
             }
 
