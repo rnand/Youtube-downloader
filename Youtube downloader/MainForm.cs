@@ -326,11 +326,12 @@ namespace Youtube_downloader
             {
                 YTtitlebackgroundWorker.RunWorkerAsync(urlData);
             }
-            else
-            {
-                YTtitlebackgroundWorker.CancelAsync();
-                YTtitlebackgroundWorker.RunWorkerAsync(urlData);
-            }
+            //else
+            //{
+            //    //If it's busy, then let the background worker continue running
+            //    YTtitlebackgroundWorker.CancelAsync();
+            //    YTtitlebackgroundWorker.RunWorkerAsync(urlData);
+            //}
         }
 
         private string GetTitle(string URL)//string site
