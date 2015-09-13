@@ -48,8 +48,10 @@ namespace Youtube_downloader
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
-            txtdir.Text = fbd.SelectedPath;
-            
+            if (result == DialogResult.OK)
+            {
+                txtdir.Text = fbd.SelectedPath;
+            }
         }
 
         private void btndwnld_Click(object sender, EventArgs e)
@@ -344,7 +346,7 @@ namespace Youtube_downloader
                     var pattern = @"<meta.*property=""og:title"".*content=""(.*)"".*>"; //pattern to match
                     Match patternMatch = Regex.Match(content, pattern);
                     var matchedPart = patternMatch.Groups[1];
-                    return matchedPart.Value;
+                    return HttpUtility.HtmlDecode(matchedPart.Value);//decode the title from html and return it
                 }
                 catch (Exception)
                 {
@@ -475,10 +477,7 @@ namespace Youtube_downloader
                 exeProcess.Start();
                 exeProcess.BeginOutputReadLine(); //need to call this method to begin the event handling and generation from the process being run
                 exeProcess.BeginErrorReadLine();
-                while (!exeProcess.HasExited) // Calling WaitForExit() will suspend the UI thread. So don't do that. Instead do this.
-                {
-                    Application.DoEvents(); // This keeps the form responsive by processing events
-                }
+                
             }
             catch (Exception runEx)
             {
