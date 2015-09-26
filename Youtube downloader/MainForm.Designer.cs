@@ -267,7 +267,7 @@
             this.btndwnld.Size = new System.Drawing.Size(123, 27);
             this.btndwnld.TabIndex = 17;
             this.btndwnld.Text = "Download";
-            this.toolTip1.SetToolTip(this.btndwnld, "Click to download the video.");
+            this.toolTip1.SetToolTip(this.btndwnld, "Click to download the video(s).");
             this.btndwnld.UseVisualStyleBackColor = true;
             this.btndwnld.Click += new System.EventHandler(this.btndwnld_Click);
             // 

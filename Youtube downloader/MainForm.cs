@@ -63,7 +63,26 @@ namespace Youtube_downloader
             {
                 MessageBox.Show("Enter the required values.", "Values needed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (chkPlaylst.Checked == true)  
+            else if (lstQ.Items.Count > 0)
+            {
+                string qlty;
+                lstQ.SetSelected(0,true); //select the first item in the listbox
+                if (rdbmaxqlty.Checked)
+                {
+                    qlty = "best"; //default quality
+                    ftype = "mp4";
+                }
+                else
+                {
+                    qlty = SetQuality();
+                }
+                for (int i = 0; i < lstQ.Items.Count;i++ )
+                {
+                    Download(qlty, dType: "q");
+                    lstQ.SelectedIndex = lstQ.SelectedIndex + 1;
+                }
+            }
+            else if (chkPlaylst.Checked == true)
             {
                 string qlty;
                 if (rdbmaxqlty.Checked)
@@ -75,12 +94,12 @@ namespace Youtube_downloader
                 {
                     qlty = SetQuality();
                 }
-                Download(qlty,dType:"pl");
+                Download(qlty, dType: "pl");
             }
             else if (rdbmp3.Checked)
             {
                 ftype = "mp3";
-                Download("best",dType:"aud");
+                Download("best", dType: "aud");
             }
             else
             {
@@ -431,14 +450,24 @@ namespace Youtube_downloader
                     exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + url + " -f " + qlty + " --playlist-start " + strtNum + " --playlist-end " + endNum;//ftype; +" ";
                 }
             }
-            else if(dType=="vid")
+            else if (dType == "q")
             {
-                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + url + " -f " + qlty;//ftype; +" ";
+
+                string vurl = lstQ.SelectedItem.ToString();
+                string changedText = vurl + " [DOWNLOADING]";
+                lstQ.Items.Insert(lstQ.SelectedIndex, changedText);
+                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vurl + " -f " + qlty;
+                
+                
+            }
+            else if (dType == "vid")
+            {
+                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + url + " -f " + qlty;
             }
             else if (dType == "aud")
             {
                 exeProcess.StartInfo.Arguments = "--extract-audio" + " --audio-format mp3" + "  --audio-quality 0" + " -o " + "\"" + fdir + "\\" + fname + "." + "m4a" + "\"" + " " + url; //audio quality, insert a value between 0 (better) and 9 (worse) for VBR
-                                                                                                                                                              //audio format: "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav"; "best" by default
+                //audio format: "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav"; "best" by default
             }
 
             exeProcess.OutputDataReceived -= exeProcess_OutDataReceivedHandler; //remove event handler if already exists
