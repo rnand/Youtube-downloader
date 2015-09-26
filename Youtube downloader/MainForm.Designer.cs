@@ -66,7 +66,7 @@
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstQ = new System.Windows.Forms.ListBox();
             this.btnAddQ = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
@@ -261,9 +261,9 @@
             // 
             // btndwnld
             // 
-            this.btndwnld.Location = new System.Drawing.Point(391, 334);
+            this.btndwnld.Location = new System.Drawing.Point(379, 334);
             this.btndwnld.Name = "btndwnld";
-            this.btndwnld.Size = new System.Drawing.Size(95, 27);
+            this.btndwnld.Size = new System.Drawing.Size(123, 27);
             this.btndwnld.TabIndex = 17;
             this.btndwnld.Text = "Download";
             this.toolTip1.SetToolTip(this.btndwnld, "Click to download the video.");
@@ -446,13 +446,14 @@
             this.btnPause.Visible = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
-            // listBox1
+            // lstQ
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 397);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(705, 121);
-            this.listBox1.TabIndex = 30;
+            this.lstQ.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstQ.FormattingEnabled = true;
+            this.lstQ.Location = new System.Drawing.Point(12, 397);
+            this.lstQ.Name = "lstQ";
+            this.lstQ.Size = new System.Drawing.Size(705, 117);
+            this.lstQ.TabIndex = 30;
             // 
             // btnAddQ
             // 
@@ -462,6 +463,7 @@
             this.btnAddQ.TabIndex = 31;
             this.btnAddQ.Text = "Add to queue";
             this.btnAddQ.UseVisualStyleBackColor = true;
+            this.btnAddQ.Click += new System.EventHandler(this.btnAddQ_Click);
             // 
             // MainForm
             // 
@@ -469,7 +471,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 522);
             this.Controls.Add(this.btnAddQ);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstQ);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblFileName);
@@ -547,7 +549,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.RadioButton rdbmp3;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstQ;
         private System.Windows.Forms.Button btnAddQ;
     }
 }

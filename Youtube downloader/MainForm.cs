@@ -551,6 +551,14 @@ namespace Youtube_downloader
                 btnPause.Text = "Pause";
             }
         }
+
+        private void btnAddQ_Click(object sender, EventArgs e)
+        {
+            if (txtURL.Text != "")
+            {
+                lstQ.Items.Add(txtURL.Text);
+            }
+        }
     }
     
     class URLData //this is for transferring values to and from the UI thread and BackgroundWorker thread
