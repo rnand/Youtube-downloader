@@ -33,7 +33,7 @@ namespace Youtube_downloader
         {
             //radYTtitle.Checked = true;
             getClipboardData(); //get the url
-                        
+            this.Height = 400;            
             txtdir.Text = Settings.Default.CustomPath; //save the default path to this variable
             if (Settings.Default.CustomPath != "") //check whether there is a default location already set or not
             {
@@ -257,15 +257,15 @@ namespace Youtube_downloader
 
         private void btnHideSt_Click(object sender, EventArgs e) //show/hide the status box
         {
-            if (txtStatus.Visible == false)
+            if (lstQ.Visible == false)
             {
-                txtStatus.Visible = true;
-                btnHideSt.Text = "Hide Status";
+                lstQ.Visible = true;
+                btnHideSt.Text = "Hide queue";
             }
             else
             {
-                txtStatus.Visible = false;
-                btnHideSt.Text = "Show Status";
+                lstQ.Visible = false;
+                btnHideSt.Text = "Show queue";
             }
             if (this.Height == 450) //resize the form
             {
@@ -556,9 +556,37 @@ namespace Youtube_downloader
         {
             if (txtURL.Text != "")
             {
+                txtStatus.Visible = true;
+                lstQ.Visible = true;
+                this.Height = 535;
                 lstQ.Items.Add(txtURL.Text);
+                txtStatus.Text = lstQ.Items.Count+ " item(s) in the queue.";
             }
         }
+
+        
+
+        private void lstQ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstQ.SelectedItems.Count != 0)
+            {
+                if (!btnRmvQ.Visible)
+                {
+                    btnRmvQ.Visible = true;
+                }
+            }
+            else
+            {
+                btnRmvQ.Visible = false;
+            }
+        }
+
+        private void btnRmvQ_Click(object sender, EventArgs e)
+        {
+            lstQ.Items.RemoveAt(lstQ.SelectedIndex);
+            txtStatus.Text = "Removed item from queue";
+        }
+
     }
     
     class URLData //this is for transferring values to and from the UI thread and BackgroundWorker thread

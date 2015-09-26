@@ -68,6 +68,7 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.lstQ = new System.Windows.Forms.ListBox();
             this.btnAddQ = new System.Windows.Forms.Button();
+            this.btnRmvQ = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -261,7 +262,7 @@
             // 
             // btndwnld
             // 
-            this.btndwnld.Location = new System.Drawing.Point(379, 334);
+            this.btndwnld.Location = new System.Drawing.Point(384, 334);
             this.btndwnld.Name = "btndwnld";
             this.btndwnld.Size = new System.Drawing.Size(123, 27);
             this.btndwnld.TabIndex = 17;
@@ -354,12 +355,12 @@
             // 
             // btnHideSt
             // 
-            this.btnHideSt.Location = new System.Drawing.Point(526, 335);
+            this.btnHideSt.Location = new System.Drawing.Point(531, 335);
             this.btnHideSt.Name = "btnHideSt";
             this.btnHideSt.Size = new System.Drawing.Size(123, 27);
             this.btnHideSt.TabIndex = 25;
-            this.btnHideSt.Text = "Hide Status";
-            this.toolTip1.SetToolTip(this.btnHideSt, "Display or hide the status of download.");
+            this.btnHideSt.Text = "Hide queue";
+            this.toolTip1.SetToolTip(this.btnHideSt, "Display or hide the queue.");
             this.btnHideSt.UseVisualStyleBackColor = true;
             this.btnHideSt.Visible = false;
             this.btnHideSt.Click += new System.EventHandler(this.btnHideSt_Click);
@@ -426,7 +427,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(378, 335);
+            this.btnCancel.Location = new System.Drawing.Point(383, 335);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(123, 27);
             this.btnCancel.TabIndex = 28;
@@ -437,7 +438,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(82, 335);
+            this.btnPause.Location = new System.Drawing.Point(87, 335);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(123, 27);
             this.btnPause.TabIndex = 29;
@@ -448,16 +449,18 @@
             // 
             // lstQ
             // 
-            this.lstQ.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstQ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstQ.FormattingEnabled = true;
-            this.lstQ.Location = new System.Drawing.Point(12, 397);
+            this.lstQ.Location = new System.Drawing.Point(12, 398);
             this.lstQ.Name = "lstQ";
-            this.lstQ.Size = new System.Drawing.Size(705, 117);
+            this.lstQ.Size = new System.Drawing.Size(705, 106);
             this.lstQ.TabIndex = 30;
+            this.lstQ.Visible = false;
+            this.lstQ.SelectedIndexChanged += new System.EventHandler(this.lstQ_SelectedIndexChanged);
             // 
             // btnAddQ
             // 
-            this.btnAddQ.Location = new System.Drawing.Point(230, 335);
+            this.btnAddQ.Location = new System.Drawing.Point(235, 335);
             this.btnAddQ.Name = "btnAddQ";
             this.btnAddQ.Size = new System.Drawing.Size(123, 27);
             this.btnAddQ.TabIndex = 31;
@@ -465,11 +468,23 @@
             this.btnAddQ.UseVisualStyleBackColor = true;
             this.btnAddQ.Click += new System.EventHandler(this.btnAddQ_Click);
             // 
+            // btnRmvQ
+            // 
+            this.btnRmvQ.Location = new System.Drawing.Point(622, 400);
+            this.btnRmvQ.Name = "btnRmvQ";
+            this.btnRmvQ.Size = new System.Drawing.Size(95, 36);
+            this.btnRmvQ.TabIndex = 32;
+            this.btnRmvQ.Text = "Remove selected item";
+            this.btnRmvQ.UseVisualStyleBackColor = true;
+            this.btnRmvQ.Visible = false;
+            this.btnRmvQ.Click += new System.EventHandler(this.btnRmvQ_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 522);
+            this.ClientSize = new System.Drawing.Size(729, 507);
+            this.Controls.Add(this.btnRmvQ);
             this.Controls.Add(this.btnAddQ);
             this.Controls.Add(this.lstQ);
             this.Controls.Add(this.btnPause);
@@ -551,6 +566,7 @@
         private System.Windows.Forms.RadioButton rdbmp3;
         private System.Windows.Forms.ListBox lstQ;
         private System.Windows.Forms.Button btnAddQ;
+        private System.Windows.Forms.Button btnRmvQ;
     }
 }
 
