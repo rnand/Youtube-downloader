@@ -21,7 +21,7 @@ You need dot net framework 4 to run the application. Get it here: https://www.mi
 
 You also need ffmpeg for DASH videos. Get it here: https://www.ffmpeg.org/download.html
 
-###USAGE**
+###USAGE
 
 1. Copy youtube/vimeo/dailymotion/any-other-supported-site video url to clipboard
 
