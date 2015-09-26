@@ -9,11 +9,10 @@ You can download videos from other video sharing sites as well. A huge set of si
 Here it is in action:
 ![screenshot](https://cloud.githubusercontent.com/assets/12506856/8923816/6b50f2ea-3513-11e5-9c7d-8e3f31a1f858.PNG)
 
-The ability to queue videos and the ability to download more than one video at a time will be coming soon. In the mean time, you can add all the videos that you want to a youtube playlist and then download them. Another feature that I wish to add in the future releases is the ability to schedule downloads(single videos and queues).
 
 ###Building
 
-I have used several packages, such as WindowsApiodePack, Costura.Fordy etc, which NuGet should take care of automatically when building(See [here](https://docs.nuget.org/Consume/Package-Restore)). So clone the repo, and you're good to go.
+I have used several packages, such as WindowsApiCodePack, Costura.Fordy etc, which NuGet should take care of automatically when building(See [here](https://docs.nuget.org/Consume/Package-Restore)). So clone the repo, and you're good to go.
 
 **To download the executable**, go to **downloads** section under releases : https://github.com/rnand/Youtuble-downloader/releases
 
