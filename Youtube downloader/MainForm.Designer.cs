@@ -66,6 +66,8 @@
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnAddQ = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +94,7 @@
             // 
             this.lblSave.AutoSize = true;
             this.lblSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSave.Location = new System.Drawing.Point(79, 93);
+            this.lblSave.Location = new System.Drawing.Point(79, 90);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(62, 18);
             this.lblSave.TabIndex = 2;
@@ -100,7 +102,7 @@
             // 
             // txtdir
             // 
-            this.txtdir.Location = new System.Drawing.Point(143, 91);
+            this.txtdir.Location = new System.Drawing.Point(143, 88);
             this.txtdir.Name = "txtdir";
             this.txtdir.Size = new System.Drawing.Size(493, 20);
             this.txtdir.TabIndex = 2;
@@ -109,7 +111,7 @@
             // btnbrowse
             // 
             this.btnbrowse.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnbrowse.Location = new System.Drawing.Point(639, 86);
+            this.btnbrowse.Location = new System.Drawing.Point(639, 83);
             this.btnbrowse.Name = "btnbrowse";
             this.btnbrowse.Size = new System.Drawing.Size(70, 30);
             this.btnbrowse.TabIndex = 3;
@@ -128,7 +130,7 @@
             this.groupBoxQlty.Controls.Add(this.rdbsd480);
             this.groupBoxQlty.Controls.Add(this.rdbhd720);
             this.groupBoxQlty.Controls.Add(this.rdbhd1080);
-            this.groupBoxQlty.Location = new System.Drawing.Point(124, 212);
+            this.groupBoxQlty.Location = new System.Drawing.Point(124, 168);
             this.groupBoxQlty.Name = "groupBoxQlty";
             this.groupBoxQlty.Size = new System.Drawing.Size(225, 137);
             this.groupBoxQlty.TabIndex = 8;
@@ -217,7 +219,7 @@
             this.groupBoxFtype.Controls.Add(this.rdbmp3);
             this.groupBoxFtype.Controls.Add(this.rdbwebm);
             this.groupBoxFtype.Controls.Add(this.rdbmp4);
-            this.groupBoxFtype.Location = new System.Drawing.Point(392, 212);
+            this.groupBoxFtype.Location = new System.Drawing.Point(392, 168);
             this.groupBoxFtype.Name = "groupBoxFtype";
             this.groupBoxFtype.Size = new System.Drawing.Size(213, 137);
             this.groupBoxFtype.TabIndex = 15;
@@ -259,9 +261,9 @@
             // 
             // btndwnld
             // 
-            this.btndwnld.Location = new System.Drawing.Point(317, 378);
+            this.btndwnld.Location = new System.Drawing.Point(391, 334);
             this.btndwnld.Name = "btndwnld";
-            this.btndwnld.Size = new System.Drawing.Size(95, 29);
+            this.btndwnld.Size = new System.Drawing.Size(95, 27);
             this.btndwnld.TabIndex = 17;
             this.btndwnld.Text = "Download";
             this.toolTip1.SetToolTip(this.btndwnld, "Click to download the video.");
@@ -271,7 +273,7 @@
             // chkDefLoc
             // 
             this.chkDefLoc.AutoSize = true;
-            this.chkDefLoc.Location = new System.Drawing.Point(143, 124);
+            this.chkDefLoc.Location = new System.Drawing.Point(143, 116);
             this.chkDefLoc.Name = "chkDefLoc";
             this.chkDefLoc.Size = new System.Drawing.Size(131, 17);
             this.chkDefLoc.TabIndex = 4;
@@ -342,7 +344,7 @@
             // txtStatus
             // 
             this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(12, 421);
+            this.txtStatus.Location = new System.Drawing.Point(12, 374);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(705, 20);
@@ -352,9 +354,9 @@
             // 
             // btnHideSt
             // 
-            this.btnHideSt.Location = new System.Drawing.Point(461, 379);
+            this.btnHideSt.Location = new System.Drawing.Point(526, 335);
             this.btnHideSt.Name = "btnHideSt";
-            this.btnHideSt.Size = new System.Drawing.Size(123, 28);
+            this.btnHideSt.Size = new System.Drawing.Size(123, 27);
             this.btnHideSt.TabIndex = 25;
             this.btnHideSt.Text = "Hide Status";
             this.toolTip1.SetToolTip(this.btnHideSt, "Display or hide the status of download.");
@@ -383,7 +385,7 @@
             // 
             // prgrsbr
             // 
-            this.prgrsbr.Location = new System.Drawing.Point(16, 357);
+            this.prgrsbr.Location = new System.Drawing.Point(16, 313);
             this.prgrsbr.Maximum = 1000;
             this.prgrsbr.Name = "prgrsbr";
             this.prgrsbr.Size = new System.Drawing.Size(693, 13);
@@ -397,16 +399,15 @@
             // 
             // txtfilename
             // 
-            this.txtfilename.Location = new System.Drawing.Point(141, 161);
+            this.txtfilename.Location = new System.Drawing.Point(141, 138);
             this.txtfilename.Name = "txtfilename";
             this.txtfilename.Size = new System.Drawing.Size(510, 20);
             this.txtfilename.TabIndex = 7;
-            this.txtfilename.TextChanged += new System.EventHandler(this.txtfilename_TextChanged);
             // 
             // lblRetrv
             // 
             this.lblRetrv.AutoSize = true;
-            this.lblRetrv.Location = new System.Drawing.Point(144, 165);
+            this.lblRetrv.Location = new System.Drawing.Point(144, 142);
             this.lblRetrv.Name = "lblRetrv";
             this.lblRetrv.Size = new System.Drawing.Size(83, 13);
             this.lblRetrv.TabIndex = 11;
@@ -417,7 +418,7 @@
             // 
             this.lblFileName.AutoSize = true;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileName.Location = new System.Drawing.Point(56, 161);
+            this.lblFileName.Location = new System.Drawing.Point(56, 138);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(79, 18);
             this.lblFileName.TabIndex = 12;
@@ -425,9 +426,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(303, 379);
+            this.btnCancel.Location = new System.Drawing.Point(378, 335);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(123, 28);
+            this.btnCancel.Size = new System.Drawing.Size(123, 27);
             this.btnCancel.TabIndex = 28;
             this.btnCancel.Text = "Cancel download";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -436,20 +437,39 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(148, 379);
+            this.btnPause.Location = new System.Drawing.Point(82, 335);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(123, 28);
+            this.btnPause.Size = new System.Drawing.Size(123, 27);
             this.btnPause.TabIndex = 29;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Visible = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 397);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(705, 121);
+            this.listBox1.TabIndex = 30;
+            // 
+            // btnAddQ
+            // 
+            this.btnAddQ.Location = new System.Drawing.Point(230, 335);
+            this.btnAddQ.Name = "btnAddQ";
+            this.btnAddQ.Size = new System.Drawing.Size(123, 27);
+            this.btnAddQ.TabIndex = 31;
+            this.btnAddQ.Text = "Add to queue";
+            this.btnAddQ.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 422);
+            this.ClientSize = new System.Drawing.Size(729, 522);
+            this.Controls.Add(this.btnAddQ);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblFileName);
@@ -527,6 +547,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.RadioButton rdbmp3;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnAddQ;
     }
 }
 

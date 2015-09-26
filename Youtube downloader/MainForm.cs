@@ -210,27 +210,10 @@ namespace Youtube_downloader
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the 'percentage data' in the output
                 {
-
-                    //prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
-                    prgrsbr.Value = (int)(Convert.ToDecimal(match.Value)*10);//now this, is more like it. we need to convert the decimal value to int
+                    prgrsbr.Value = (int)(Convert.ToDecimal(match.Value)*10);//we need to convert the decimal value to int
                     TaskbarManager.Instance.SetProgressValue(prgrsbr.Value, 1000);
                 }
             }
-        }
-        private void txtfilename_TextChanged(object sender, EventArgs e)
-        {
-            //lblFileSpChar.Visible = true;
-            //radCustomFileName.Checked = true;
-        }
-
-        private void radYTtitle_CheckedChanged(object sender, EventArgs e)
-        {
-            //lblFileSpChar.Visible = false;
-        }
-
-        private void radCustomFileName_CheckedChanged(object sender, EventArgs e)
-        {
-            //lblFileSpChar.Visible = true;
         }
 
         private void chkDefLoc_CheckedChanged(object sender, EventArgs e)
@@ -255,12 +238,10 @@ namespace Youtube_downloader
                 txtPLend.Enabled = true;
                 lblPLstart.Enabled = true;
                 txtPLstart.Enabled = true;
-                //radCustomFileName.Enabled = false;
                 txtfilename.Enabled = false;
             }
             else
             {
-                //radCustomFileName.Enabled = true;
                 txtfilename.Enabled = true;
                 lblPLend.Enabled = false;
                 txtPLend.Enabled = false;
@@ -268,11 +249,7 @@ namespace Youtube_downloader
                 txtPLstart.Enabled = false;
             }
         }
-        public void validate(String url)
-        {
-            //to implement
-        }
-
+        
         private void linkgit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.github.com/rnand/");
@@ -355,7 +332,7 @@ namespace Youtube_downloader
                 
             
             }
-            return "";
+            return String.Empty; //return null incase the fetching fails
         }
 
         private void YTtitlebackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -377,7 +354,7 @@ namespace Youtube_downloader
         {
             var urltitlereturn = (URLData)e.Result;
             lblRetrv.Visible = false;
-            if (urltitlereturn.title == null)
+            if (String.IsNullOrEmpty(urltitlereturn.title))
             {
                 txtfilename.Text = "Unknown video"; //set this if background worker was unable to retrieve the actual title
             }
