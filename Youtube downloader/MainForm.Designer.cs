@@ -69,6 +69,7 @@
             this.lstQ = new System.Windows.Forms.ListBox();
             this.btnAddQ = new System.Windows.Forms.Button();
             this.btnRmvQ = new System.Windows.Forms.Button();
+            this.btnRmvAll = new System.Windows.Forms.Button();
             this.groupBoxQlty.SuspendLayout();
             this.groupBoxFtype.SuspendLayout();
             this.SuspendLayout();
@@ -470,7 +471,7 @@
             // 
             // btnRmvQ
             // 
-            this.btnRmvQ.Location = new System.Drawing.Point(622, 400);
+            this.btnRmvQ.Location = new System.Drawing.Point(602, 400);
             this.btnRmvQ.Name = "btnRmvQ";
             this.btnRmvQ.Size = new System.Drawing.Size(95, 36);
             this.btnRmvQ.TabIndex = 32;
@@ -479,11 +480,23 @@
             this.btnRmvQ.Visible = false;
             this.btnRmvQ.Click += new System.EventHandler(this.btnRmvQ_Click);
             // 
+            // btnRmvAll
+            // 
+            this.btnRmvAll.Location = new System.Drawing.Point(602, 442);
+            this.btnRmvAll.Name = "btnRmvAll";
+            this.btnRmvAll.Size = new System.Drawing.Size(95, 38);
+            this.btnRmvAll.TabIndex = 33;
+            this.btnRmvAll.Text = "Remove all items";
+            this.btnRmvAll.UseVisualStyleBackColor = true;
+            this.btnRmvAll.Visible = false;
+            this.btnRmvAll.Click += new System.EventHandler(this.btnRmvAll_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 507);
+            this.Controls.Add(this.btnRmvAll);
             this.Controls.Add(this.btnRmvQ);
             this.Controls.Add(this.btnAddQ);
             this.Controls.Add(this.lstQ);
@@ -515,7 +528,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "YouTube Downloader 1.4.9";
+            this.Text = "YouTube Downloader 1.5.0";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBoxQlty.ResumeLayout(false);
             this.groupBoxQlty.PerformLayout();
@@ -567,6 +580,7 @@
         private System.Windows.Forms.ListBox lstQ;
         private System.Windows.Forms.Button btnAddQ;
         private System.Windows.Forms.Button btnRmvQ;
+        private System.Windows.Forms.Button btnRmvAll;
     }
 }
 

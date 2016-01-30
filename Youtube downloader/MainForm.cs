@@ -28,7 +28,8 @@ namespace Youtube_downloader
         private string ftype;
         private string fdir;
         private string fname;
-        
+        private System.Text.StringBuilder qurls;
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             //radYTtitle.Checked = true;
@@ -66,7 +67,8 @@ namespace Youtube_downloader
             else if (lstQ.Items.Count > 0)
             {
                 string qlty;
-                lstQ.SetSelected(0,true); //select the first item in the listbox
+                qurls = new System.Text.StringBuilder();
+                //lstQ.SetSelected(0,true); //select the first item in the listbox
                 if (rdbmaxqlty.Checked)
                 {
                     qlty = "best"; //default quality
@@ -76,11 +78,13 @@ namespace Youtube_downloader
                 {
                     qlty = SetQuality();
                 }
-                for (int i = 0; i < lstQ.Items.Count;i++ )
+                
+                for (int i = 0; i < lstQ.Items.Count;i++ ) 
                 {
-                    Download(qlty, dType: "q");
-                    lstQ.SelectedIndex = lstQ.SelectedIndex + 1;
+                    qurls.Append(" ").Append(lstQ.Items[i].ToString());
+
                 }
+                Download(qlty, dType: "q");
             }
             else if (chkPlaylst.Checked == true)
             {
@@ -415,7 +419,7 @@ namespace Youtube_downloader
         {
             btnCancel.Visible = true;
             btnPause.Visible = true;
-            this.Height = 490; //resize the form   
+            this.Height = 535; //resize the form   
             txtStatus.Visible = true;//show the status text box
             btnHideSt.Visible = true;//show the 'hide status' button
             prgrsbr.Visible = true;//show the progressbar
@@ -453,10 +457,12 @@ namespace Youtube_downloader
             else if (dType == "q")
             {
 
-                string vurl = lstQ.SelectedItem.ToString();
-                string changedText = vurl + " [DOWNLOADING]";
-                lstQ.Items.Insert(lstQ.SelectedIndex, changedText);
-                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + vurl + " -f " + qlty;
+                //string vurl = lstQ.SelectedItem.ToString();
+                string vurl = qurls.ToString();
+                //string changedText = vurl + " [DOWNLOADING]";
+                //lstQ.Items.Insert(lstQ.SelectedIndex, changedText);
+                MessageBox.Show(vurl);
+                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vurl + " -f " + qlty;
                 
                 
             }
@@ -603,9 +609,14 @@ namespace Youtube_downloader
                 {
                     btnRmvQ.Visible = true;
                 }
+                if (!btnRmvAll.Visible)
+                {
+                    btnRmvAll.Visible = true;
+                }
             }
             else
             {
+                btnRmvAll.Visible = false;
                 btnRmvQ.Visible = false;
             }
         }
@@ -614,6 +625,12 @@ namespace Youtube_downloader
         {
             lstQ.Items.RemoveAt(lstQ.SelectedIndex);
             txtStatus.Text = "Removed item from queue";
+        }
+
+        private void btnRmvAll_Click(object sender, EventArgs e)
+        {
+            lstQ.Items.Clear();
+            
         }
 
     }
