@@ -28,12 +28,13 @@ namespace Youtube_downloader
         private string ftype;
         private string fdir;
         private string fname;
-        
+        private System.Text.StringBuilder qurls;
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             //radYTtitle.Checked = true;
             getClipboardData(); //get the url
-                        
+            this.Height = 400;            
             txtdir.Text = Settings.Default.CustomPath; //save the default path to this variable
             if (Settings.Default.CustomPath != "") //check whether there is a default location already set or not
             {
@@ -63,7 +64,29 @@ namespace Youtube_downloader
             {
                 MessageBox.Show("Enter the required values.", "Values needed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (chkPlaylst.Checked == true)  
+            else if (lstQ.Items.Count > 0)
+            {
+                string qlty;
+                qurls = new System.Text.StringBuilder();
+                //lstQ.SetSelected(0,true); //select the first item in the listbox
+                if (rdbmaxqlty.Checked)
+                {
+                    qlty = "best"; //default quality
+                    ftype = "mp4";
+                }
+                else
+                {
+                    qlty = SetQuality();
+                }
+                
+                for (int i = 0; i < lstQ.Items.Count;i++ ) 
+                {
+                    qurls.Append(" ").Append(lstQ.Items[i].ToString());
+
+                }
+                Download(qlty, dType: "q");
+            }
+            else if (chkPlaylst.Checked == true)
             {
                 string qlty;
                 if (rdbmaxqlty.Checked)
@@ -75,12 +98,12 @@ namespace Youtube_downloader
                 {
                     qlty = SetQuality();
                 }
-                Download(qlty,dType:"pl");
+                Download(qlty, dType: "pl");
             }
             else if (rdbmp3.Checked)
             {
                 ftype = "mp3";
-                Download("best",dType:"aud");
+                Download("best", dType: "aud");
             }
             else
             {
@@ -210,27 +233,10 @@ namespace Youtube_downloader
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 foreach (Match match in Regex.Matches(output, @"[\.\d]+(?=%)")) //find the 'percentage data' in the output
                 {
-
-                    //prgrsbr.PerformStep(); //lol. This is not how you do this, is it? But it works!
-                    prgrsbr.Value = (int)(Convert.ToDecimal(match.Value)*10);//now this, is more like it. we need to convert the decimal value to int
+                    prgrsbr.Value = (int)(Convert.ToDecimal(match.Value)*10);//we need to convert the decimal value to int
                     TaskbarManager.Instance.SetProgressValue(prgrsbr.Value, 1000);
                 }
             }
-        }
-        private void txtfilename_TextChanged(object sender, EventArgs e)
-        {
-            //lblFileSpChar.Visible = true;
-            //radCustomFileName.Checked = true;
-        }
-
-        private void radYTtitle_CheckedChanged(object sender, EventArgs e)
-        {
-            //lblFileSpChar.Visible = false;
-        }
-
-        private void radCustomFileName_CheckedChanged(object sender, EventArgs e)
-        {
-            //lblFileSpChar.Visible = true;
         }
 
         private void chkDefLoc_CheckedChanged(object sender, EventArgs e)
@@ -255,12 +261,10 @@ namespace Youtube_downloader
                 txtPLend.Enabled = true;
                 lblPLstart.Enabled = true;
                 txtPLstart.Enabled = true;
-                //radCustomFileName.Enabled = false;
                 txtfilename.Enabled = false;
             }
             else
             {
-                //radCustomFileName.Enabled = true;
                 txtfilename.Enabled = true;
                 lblPLend.Enabled = false;
                 txtPLend.Enabled = false;
@@ -268,11 +272,7 @@ namespace Youtube_downloader
                 txtPLstart.Enabled = false;
             }
         }
-        public void validate(String url)
-        {
-            //to implement
-        }
-
+        
         private void linkgit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.github.com/rnand/");
@@ -280,15 +280,15 @@ namespace Youtube_downloader
 
         private void btnHideSt_Click(object sender, EventArgs e) //show/hide the status box
         {
-            if (txtStatus.Visible == false)
+            if (lstQ.Visible == false)
             {
-                txtStatus.Visible = true;
-                btnHideSt.Text = "Hide Status";
+                lstQ.Visible = true;
+                btnHideSt.Text = "Hide queue";
             }
             else
             {
-                txtStatus.Visible = false;
-                btnHideSt.Text = "Show Status";
+                lstQ.Visible = false;
+                btnHideSt.Text = "Show queue";
             }
             if (this.Height == 450) //resize the form
             {
@@ -355,7 +355,7 @@ namespace Youtube_downloader
                 
             
             }
-            return "";
+            return String.Empty; //return null incase the fetching fails
         }
 
         private void YTtitlebackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -377,7 +377,7 @@ namespace Youtube_downloader
         {
             var urltitlereturn = (URLData)e.Result;
             lblRetrv.Visible = false;
-            if (urltitlereturn.title == null)
+            if (String.IsNullOrEmpty(urltitlereturn.title))
             {
                 txtfilename.Text = "Unknown video"; //set this if background worker was unable to retrieve the actual title
             }
@@ -419,7 +419,7 @@ namespace Youtube_downloader
         {
             btnCancel.Visible = true;
             btnPause.Visible = true;
-            this.Height = 490; //resize the form   
+            this.Height = 535; //resize the form   
             txtStatus.Visible = true;//show the status text box
             btnHideSt.Visible = true;//show the 'hide status' button
             prgrsbr.Visible = true;//show the progressbar
@@ -454,14 +454,26 @@ namespace Youtube_downloader
                     exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + url + " -f " + qlty + " --playlist-start " + strtNum + " --playlist-end " + endNum;//ftype; +" ";
                 }
             }
-            else if(dType=="vid")
+            else if (dType == "q")
             {
-                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + url + " -f " + qlty;//ftype; +" ";
+
+                //string vurl = lstQ.SelectedItem.ToString();
+                string vurl = qurls.ToString();
+                //string changedText = vurl + " [DOWNLOADING]";
+                //lstQ.Items.Insert(lstQ.SelectedIndex, changedText);
+                MessageBox.Show(vurl);
+                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + "%(title)s" + "." + ftype + "\"" + " " + vurl + " -f " + qlty;
+                
+                
+            }
+            else if (dType == "vid")
+            {
+                exeProcess.StartInfo.Arguments = " -o " + "\"" + fdir + "\\" + fname + "." + ftype + "\"" + " " + url + " -f " + qlty;
             }
             else if (dType == "aud")
             {
                 exeProcess.StartInfo.Arguments = "--extract-audio" + " --audio-format mp3" + "  --audio-quality 0" + " -o " + "\"" + fdir + "\\" + fname + "." + "m4a" + "\"" + " " + url; //audio quality, insert a value between 0 (better) and 9 (worse) for VBR
-                                                                                                                                                              //audio format: "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav"; "best" by default
+                //audio format: "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav"; "best" by default
             }
 
             exeProcess.OutputDataReceived -= exeProcess_OutDataReceivedHandler; //remove event handler if already exists
@@ -574,6 +586,53 @@ namespace Youtube_downloader
                 btnPause.Text = "Pause";
             }
         }
+
+        private void btnAddQ_Click(object sender, EventArgs e)
+        {
+            if (txtURL.Text != "")
+            {
+                txtStatus.Visible = true;
+                lstQ.Visible = true;
+                this.Height = 535;
+                lstQ.Items.Add(txtURL.Text);
+                txtStatus.Text = lstQ.Items.Count+ " item(s) in the queue.";
+            }
+        }
+
+        
+
+        private void lstQ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstQ.SelectedItems.Count != 0)
+            {
+                if (!btnRmvQ.Visible)
+                {
+                    btnRmvQ.Visible = true;
+                }
+                if (!btnRmvAll.Visible)
+                {
+                    btnRmvAll.Visible = true;
+                }
+            }
+            else
+            {
+                btnRmvAll.Visible = false;
+                btnRmvQ.Visible = false;
+            }
+        }
+
+        private void btnRmvQ_Click(object sender, EventArgs e)
+        {
+            lstQ.Items.RemoveAt(lstQ.SelectedIndex);
+            txtStatus.Text = "Removed item from queue";
+        }
+
+        private void btnRmvAll_Click(object sender, EventArgs e)
+        {
+            lstQ.Items.Clear();
+            
+        }
+
     }
     
     class URLData //this is for transferring values to and from the UI thread and BackgroundWorker thread
